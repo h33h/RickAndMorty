@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class AppCoordinator: BaseCoordinator {
-
   var window: UIWindow
 
   init(window: UIWindow) {
@@ -19,5 +18,9 @@ class AppCoordinator: BaseCoordinator {
   override func start() {
     window.rootViewController = navigationController
     window.makeKeyAndVisible()
+    DIContainer.shared.assembler.apply(assembly: MenuAssembly())
+    let menuCoordinator: MenuCoordinator = DIContainer.shared.resolve()
+    menuCoordinator.navigationController = navigationController
+    coordinate(to: menuCoordinator)
   }
 }

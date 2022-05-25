@@ -11,7 +11,7 @@ import UIKit
 class BaseCoordinator: Coordinator {
   var navigationController = UINavigationController()
   var parentCoordinator: Coordinator?
-  var childCoordinators = [Coordinator]()
+  var childCoordinators: [Coordinator] = []
 
   func start() {
     fatalError("Should be implemented in child coordinators")
@@ -33,6 +33,4 @@ class BaseCoordinator: Coordinator {
     childCoordinators.forEach { $0.removeChildCoordinators() }
     childCoordinators.removeAll()
   }
-
-  
 }
