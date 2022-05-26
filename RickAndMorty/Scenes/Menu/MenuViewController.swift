@@ -8,13 +8,10 @@
 import UIKit
 
 class MenuViewController: UIViewController, Storyboarded {
-  static var storyboard: StoryboardID = .menu
+  static var storyboardName: StoryboardName = .menu
   var viewModel: MenuViewModel?
 
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-
-
 }
-
