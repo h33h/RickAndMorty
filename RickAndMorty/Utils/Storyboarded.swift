@@ -9,14 +9,17 @@ import Foundation
 import UIKit
 
 protocol Storyboarded {
-  static var storyboard: StoryboardID { get }
+  static var storyboardName: StoryboardName { get }
   static func instantiate() -> Self
 }
 
-extension Storyboarded {
+extension Storyboarded where Self: UIViewController {
   static func instantiate() -> Self {
     let id = String(describing: self)
-    let storyboard = UIStoryboard(name: storyboard.rawValue, bundle: nil)
-    return storyboard.instantiateViewController(withIdentifier: id) as! Self
+    let storyboard = UIStoryboard(name: storyboardName.rawValue, bundle: nil)
+    guard let viewController = storyboard.instantiateViewController(withIdentifier: id) as? Self else {
+      fatalError("ViewController not found")
+    }
+    return viewController
   }
 }
