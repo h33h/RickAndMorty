@@ -10,6 +10,11 @@
 		268F6726A345469E0C4C643C /* Pods_RickAndMortyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EFBD7E854FA3AE1B445F75 /* Pods_RickAndMortyTests.framework */; };
 		42A991BDEC85316CA397090A /* Pods_RickAndMorty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4DC3E84F7F53E56F46C8A0 /* Pods_RickAndMorty.framework */; };
 		55FCB7CF51AA3771E947EE55 /* Pods_RickAndMorty_RickAndMortyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0EA1102EDAD8C0E499E1AB9 /* Pods_RickAndMorty_RickAndMortyUITests.framework */; };
+		A90C495F283F8972001E004F /* CustomTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C495E283F8972001E004F /* CustomTabBarItem.swift */; };
+		A90C4961283F8F04001E004F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C4960283F8F04001E004F /* TabBarController.swift */; };
+		A90C4963283F9C35001E004F /* TabBarItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90C4962283F9C35001E004F /* TabBarItemView.xib */; };
+		A90C4965283F9FF4001E004F /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C4964283F9FF4001E004F /* TabBarItemView.swift */; };
+		A90C49692840C186001E004F /* TabBarItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C49682840C186001E004F /* TabBarItemState.swift */; };
 		A94793E7283E6CFB0093DB35 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E6283E6CFB0093DB35 /* AppAssembly.swift */; };
 		A94793EA283E738E0093DB35 /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E9283E738E0093DB35 /* MenuCoordinator.swift */; };
 		A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793EB283E73C70093DB35 /* MenuViewModel.swift */; };
@@ -55,6 +60,11 @@
 		64F9054D04125AEB57AA3294 /* Pods-RickAndMorty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMorty.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty.debug.xcconfig"; sourceTree = "<group>"; };
 		7B0B490B7F3C755F2834A549 /* Pods-RickAndMorty-RickAndMortyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMorty-RickAndMortyUITests.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMorty-RickAndMortyUITests/Pods-RickAndMorty-RickAndMortyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		89EFBD7E854FA3AE1B445F75 /* Pods_RickAndMortyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMortyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A90C495E283F8972001E004F /* CustomTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarItem.swift; sourceTree = "<group>"; };
+		A90C4960283F8F04001E004F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A90C4962283F9C35001E004F /* TabBarItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarItemView.xib; sourceTree = "<group>"; };
+		A90C4964283F9FF4001E004F /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
+		A90C49682840C186001E004F /* TabBarItemState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemState.swift; sourceTree = "<group>"; };
 		A94793E6283E6CFB0093DB35 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		A94793E9283E738E0093DB35 /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
 		A94793EB283E73C70093DB35 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -124,6 +134,26 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A90C495C283F8926001E004F /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A90C495D283F893A001E004F /* TabBar */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		A90C495D283F893A001E004F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A90C495E283F8972001E004F /* CustomTabBarItem.swift */,
+				A90C4960283F8F04001E004F /* TabBarController.swift */,
+				A90C4962283F9C35001E004F /* TabBarItemView.xib */,
+				A90C4964283F9FF4001E004F /* TabBarItemView.swift */,
+				A90C49682840C186001E004F /* TabBarItemState.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		A94793E5283E6A620093DB35 /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +207,7 @@
 		A9E5C267283E0B2300842AF7 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				A90C495C283F8926001E004F /* UIComponents */,
 				A94793EF283E78DD0093DB35 /* Utils */,
 				A9E5C2A4283E5FE200842AF7 /* DependencyInjection */,
 				A9E5C29C283E4C9B00842AF7 /* Base */,
@@ -381,6 +412,7 @@
 			files = (
 				A9E5C275283E0B2C00842AF7 /* LaunchScreen.storyboard in Resources */,
 				A9E5C272283E0B2C00842AF7 /* Assets.xcassets in Resources */,
+				A90C4963283F9C35001E004F /* TabBarItemView.xib in Resources */,
 				A9E5C270283E0B2300842AF7 /* Menu.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,14 +559,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9E5C2A6283E601000842AF7 /* DIContainer.swift in Sources */,
+				A90C4961283F8F04001E004F /* TabBarController.swift in Sources */,
+				A90C49692840C186001E004F /* TabBarItemState.swift in Sources */,
 				A9E5C2A3283E5AE600842AF7 /* AppCoordinator.swift in Sources */,
 				A9E5C2A0283E4D8100842AF7 /* BaseCoordinator.swift in Sources */,
 				A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */,
 				A9E5C29E283E4CC200842AF7 /* Coordinator.swift in Sources */,
+				A90C4965283F9FF4001E004F /* TabBarItemView.swift in Sources */,
 				A9E5C26D283E0B2300842AF7 /* MenuViewController.swift in Sources */,
 				A94793E7283E6CFB0093DB35 /* AppAssembly.swift in Sources */,
 				A9E5C269283E0B2300842AF7 /* AppDelegate.swift in Sources */,
 				A94793EE283E741F0093DB35 /* MenuAssembly.swift in Sources */,
+				A90C495F283F8972001E004F /* CustomTabBarItem.swift in Sources */,
 				A94793EA283E738E0093DB35 /* MenuCoordinator.swift in Sources */,
 				A9E5C26B283E0B2300842AF7 /* SceneDelegate.swift in Sources */,
 				A94793F3283E7A690093DB35 /* StoryboardName.swift in Sources */,
