@@ -9,8 +9,10 @@ target 'RickAndMorty' do
 
 pod 'RxSwift'
 pod 'RxCocoa'
+pod 'RxGesture'
 pod 'Swinject'
 pod 'Moya/RxSwift'
+pod 'SnapKit'
 pod 'SwiftLint'
 
   target 'RickAndMortyTests' do

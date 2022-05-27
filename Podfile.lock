@@ -8,16 +8,22 @@ PODS:
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
+  - RxGesture (4.0.4):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
+  - SnapKit (5.0.1)
   - SwiftLint (0.45.0)
   - Swinject (2.8.1)
 
 DEPENDENCIES:
   - Moya/RxSwift
   - RxCocoa
+  - RxGesture
   - RxSwift
+  - SnapKit
   - SwiftLint
   - Swinject
 
@@ -26,8 +32,10 @@ SPEC REPOS:
     - Alamofire
     - Moya
     - RxCocoa
+    - RxGesture
     - RxRelay
     - RxSwift
+    - SnapKit
     - SwiftLint
     - Swinject
 
@@ -35,11 +43,13 @@ SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
   Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
-PODFILE CHECKSUM: 3c9f2fa9acafb8606840ff4b5d6563d96de45b5c
+PODFILE CHECKSUM: 2af7eee37736d12181fdcd4435ad7ab2676a9430
 
 COCOAPODS: 1.11.2
