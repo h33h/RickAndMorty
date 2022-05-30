@@ -46,19 +46,7 @@ class TabBarController<T: CaseIterable & TabBarItem>: UIViewController {
   private func setupComponents() {
     view.backgroundColor = .systemBackground
     view.addSubview(stackView)
-    stackView.snp.makeConstraints { make in
-      make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
-      make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
-      make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-      make.height.equalTo(70)
-    }
     view.addSubview(currentTabView)
-    currentTabView.snp.makeConstraints { make in
-      make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
-      make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
-      make.top.equalTo(view.snp.top)
-      make.bottom.equalTo(stackView.snp.top)
-    }
     setupTabs()
   }
 
