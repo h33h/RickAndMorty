@@ -29,7 +29,7 @@ class TabBarItemSelectedState: TabBarItemState {
       animations: { [weak self] in
         self?.tabBarItemView?.titleLabel.text = content.title
         self?.tabBarItemView?.imageView.image = UIImage(systemName: content.selectedImageName)
-        self?.tabBarItemView?.backgroundView.backgroundColor = .systemYellow
+        self?.tabBarItemView?.backgroundView.backgroundColor = UIColor.appGreen
         self?.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)
   }

@@ -4,28 +4,101 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="font.ttf">
+            <string>GetSchwifty-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Menu View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="MenuViewController" customModule="RickAndMorty" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" id="Y6W-OH-hqX" customClass="MenuViewController" customModule="RickAndMorty" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svz-QF-Jd2">
+                                <rect key="frame" x="0.0" y="114" width="414" height="748"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5h-su-ee1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="70"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-vn-XT4">
+                                        <rect key="frame" x="16" y="0.0" width="382" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rick and Morty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AJF-1U-fZJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="327" height="70"/>
+                                                <fontDescription key="fontDescription" name="GetSchwifty-Regular" family="Get Schwifty" pointSize="42"/>
+                                                <color key="textColor" name="appCyan"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" name="appGreen"/>
+                                                <size key="shadowOffset" width="2" height="1"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btk-tI-bSr">
+                                                <rect key="frame" x="339" y="0.0" width="43" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="43" id="TrD-FO-QQ7"/>
+                                                </constraints>
+                                                <color key="tintColor" name="appCyan"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="arrow.up.arrow.down.circle" catalog="system" symbolScale="default"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sortButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hur-Zg-KBA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="cWM-vn-XT4" firstAttribute="leading" secondItem="n5h-su-ee1" secondAttribute="leading" constant="16" id="gof-3D-gLZ"/>
+                                    <constraint firstAttribute="height" constant="70" id="lh7-kV-9vG"/>
+                                    <constraint firstAttribute="trailing" secondItem="cWM-vn-XT4" secondAttribute="trailing" constant="16" id="qMx-d9-9cd"/>
+                                    <constraint firstItem="cWM-vn-XT4" firstAttribute="top" secondItem="n5h-su-ee1" secondAttribute="top" id="rXE-8F-c3m"/>
+                                    <constraint firstAttribute="bottom" secondItem="cWM-vn-XT4" secondAttribute="bottom" id="wEg-8A-MWF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="n5h-su-ee1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="MC6-cz-3vE"/>
+                            <constraint firstItem="svz-QF-Jd2" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Mhc-kf-50V"/>
+                            <constraint firstItem="n5h-su-ee1" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="VRw-VW-oLq"/>
+                            <constraint firstItem="svz-QF-Jd2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hOj-cI-Hyk"/>
+                            <constraint firstItem="svz-QF-Jd2" firstAttribute="top" secondItem="n5h-su-ee1" secondAttribute="bottom" id="hih-Sh-a2P"/>
+                            <constraint firstItem="n5h-su-ee1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="j29-RM-154"/>
+                            <constraint firstItem="svz-QF-Jd2" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ubg-gB-QyN"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tabBarControllerView" destination="svz-QF-Jd2" id="71Q-RS-NDk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3" y="78"/>
+            <point key="canvasLocation" x="95.652173913043484" y="52.901785714285715"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
+        <namedColor name="appCyan">
+            <color red="0.0078431372549019607" green="0.67843137254901964" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGreen">
+            <color red="0.78431372549019607" green="0.87450980392156863" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

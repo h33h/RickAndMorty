@@ -34,7 +34,12 @@
 		A90C4991284263EC001E004F /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90C4990284263EC001E004F /* LocationCell.xib */; };
 		A90C4993284267B3001E004F /* LifeStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C4992284267B3001E004F /* LifeStatusIndicator.swift */; };
 		A91E62442844B15D00638DC8 /* MenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E62432844B15D00638DC8 /* MenuViewController.storyboard */; };
-		A91E62462844B18600638DC8 /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E62452844B18600638DC8 /* TabBarController.storyboard */; };
+		A91E62482844D9A600638DC8 /* font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A91E62472844D9A100638DC8 /* font.ttf */; };
+		A91E624B2844E8A300638DC8 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E624A2844E8A300638DC8 /* UIColor+Extensions.swift */; };
+		A91E62512844EEC000638DC8 /* EntityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E624F2844EEC000638DC8 /* EntityListViewController.swift */; };
+		A91E62542844EEE800638DC8 /* EntityListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E62532844EEE800638DC8 /* EntityListViewController.storyboard */; };
+		A91E62562844EF1900638DC8 /* EntityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E62552844EF1900638DC8 /* EntityListViewModel.swift */; };
+		A91E62682844F9A500638DC8 /* EntityListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E62672844F9A500638DC8 /* EntityListCoordinator.swift */; };
 		A94793E7283E6CFB0093DB35 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E6283E6CFB0093DB35 /* AppAssembly.swift */; };
 		A94793EA283E738E0093DB35 /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E9283E738E0093DB35 /* MenuCoordinator.swift */; };
 		A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793EB283E73C70093DB35 /* MenuViewModel.swift */; };
@@ -102,7 +107,12 @@
 		A90C4990284263EC001E004F /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
 		A90C4992284267B3001E004F /* LifeStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStatusIndicator.swift; sourceTree = "<group>"; };
 		A91E62432844B15D00638DC8 /* MenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MenuViewController.storyboard; sourceTree = "<group>"; };
-		A91E62452844B18600638DC8 /* TabBarController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarController.storyboard; sourceTree = "<group>"; };
+		A91E62472844D9A100638DC8 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font.ttf; sourceTree = "<group>"; };
+		A91E624A2844E8A300638DC8 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		A91E624F2844EEC000638DC8 /* EntityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListViewController.swift; sourceTree = "<group>"; };
+		A91E62532844EEE800638DC8 /* EntityListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EntityListViewController.storyboard; sourceTree = "<group>"; };
+		A91E62552844EF1900638DC8 /* EntityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListViewModel.swift; sourceTree = "<group>"; };
+		A91E62672844F9A500638DC8 /* EntityListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListCoordinator.swift; sourceTree = "<group>"; };
 		A94793E6283E6CFB0093DB35 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		A94793E9283E738E0093DB35 /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
 		A94793EB283E73C70093DB35 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -185,7 +195,6 @@
 			children = (
 				A90C495E283F8972001E004F /* TabBarItemContent.swift */,
 				A90C4960283F8F04001E004F /* TabBarController.swift */,
-				A91E62452844B18600638DC8 /* TabBarController.storyboard */,
 				A90C4962283F9C35001E004F /* TabBarItemView.xib */,
 				A90C4964283F9FF4001E004F /* TabBarItemView.swift */,
 				A90C49682840C186001E004F /* TabBarItemState.swift */,
@@ -238,6 +247,25 @@
 				A90C498E284263D3001E004F /* EpisodeCell.xib */,
 			);
 			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		A91E62492844E88300638DC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A91E624A2844E8A300638DC8 /* UIColor+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A91E624C2844EE0500638DC8 /* EntityList */ = {
+			isa = PBXGroup;
+			children = (
+				A91E624F2844EEC000638DC8 /* EntityListViewController.swift */,
+				A91E62532844EEE800638DC8 /* EntityListViewController.storyboard */,
+				A91E62552844EF1900638DC8 /* EntityListViewModel.swift */,
+				A91E62672844F9A500638DC8 /* EntityListCoordinator.swift */,
+			);
+			path = EntityList;
 			sourceTree = "<group>";
 		};
 		A94793E5283E6A620093DB35 /* Assemblies */ = {
@@ -293,6 +321,7 @@
 		A9E5C267283E0B2300842AF7 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				A91E62492844E88300638DC8 /* Extensions */,
 				A90C496C284114A1001E004F /* Network */,
 				A90C495C283F8926001E004F /* UIComponents */,
 				A94793EF283E78DD0093DB35 /* Utils */,
@@ -336,6 +365,7 @@
 		A9E5C29A283E46C100842AF7 /* Drawable */ = {
 			isa = PBXGroup;
 			children = (
+				A91E62472844D9A100638DC8 /* font.ttf */,
 				A9E5C273283E0B2C00842AF7 /* LaunchScreen.storyboard */,
 				A9E5C271283E0B2C00842AF7 /* Assets.xcassets */,
 			);
@@ -345,6 +375,7 @@
 		A9E5C29B283E498900842AF7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A91E624C2844EE0500638DC8 /* EntityList */,
 				A94793E8283E73480093DB35 /* Menu */,
 			);
 			path = Scenes;
@@ -496,10 +527,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A91E62462844B18600638DC8 /* TabBarController.storyboard in Resources */,
 				A91E62442844B15D00638DC8 /* MenuViewController.storyboard in Resources */,
 				A9E5C275283E0B2C00842AF7 /* LaunchScreen.storyboard in Resources */,
 				A90C4991284263EC001E004F /* LocationCell.xib in Resources */,
+				A91E62482844D9A600638DC8 /* font.ttf in Resources */,
+				A91E62542844EEE800638DC8 /* EntityListViewController.storyboard in Resources */,
 				A9E5C272283E0B2C00842AF7 /* Assets.xcassets in Resources */,
 				A90C498D284263A9001E004F /* CharacterCell.xib in Resources */,
 				A90C4963283F9C35001E004F /* TabBarItemView.xib in Resources */,
@@ -659,6 +691,7 @@
 				A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */,
 				A9E5C29E283E4CC200842AF7 /* Coordinator.swift in Sources */,
 				A90C4965283F9FF4001E004F /* TabBarItemView.swift in Sources */,
+				A91E624B2844E8A300638DC8 /* UIColor+Extensions.swift in Sources */,
 				A9E5C26D283E0B2300842AF7 /* MenuViewController.swift in Sources */,
 				A90C496F28411565001E004F /* Character.swift in Sources */,
 				A94793E7283E6CFB0093DB35 /* AppAssembly.swift in Sources */,
@@ -669,13 +702,16 @@
 				A90C497328411889001E004F /* Episode.swift in Sources */,
 				A90C497928412705001E004F /* RickAndMortyAPI.swift in Sources */,
 				A90C49812842408D001E004F /* RequestSettings.swift in Sources */,
+				A91E62512844EEC000638DC8 /* EntityListViewController.swift in Sources */,
 				A90C4993284267B3001E004F /* LifeStatusIndicator.swift in Sources */,
 				A90C495F283F8972001E004F /* TabBarItemContent.swift in Sources */,
 				A90C497B284138F3001E004F /* CharacterRequestSettings.swift in Sources */,
 				A90C49712841165D001E004F /* Location.swift in Sources */,
 				A94793EA283E738E0093DB35 /* MenuCoordinator.swift in Sources */,
 				A90C497728411AF7001E004F /* Response.swift in Sources */,
+				A91E62682844F9A500638DC8 /* EntityListCoordinator.swift in Sources */,
 				A90C497D284139AE001E004F /* LocationRequestSettings.swift in Sources */,
+				A91E62562844EF1900638DC8 /* EntityListViewModel.swift in Sources */,
 				A90C4984284253BD001E004F /* RickAndMortyService.swift in Sources */,
 				A9E5C26B283E0B2300842AF7 /* SceneDelegate.swift in Sources */,
 				A94793F1283E78F80093DB35 /* Storyboarded.swift in Sources */,

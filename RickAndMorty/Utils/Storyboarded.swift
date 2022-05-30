@@ -15,7 +15,7 @@ protocol Storyboarded {
 extension Storyboarded where Self: UIViewController {
   static func instantiate() -> Self {
     let id = String(describing: self)
-    let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
+    let storyboard = UIStoryboard(name: id, bundle: nil)
     guard let viewController = storyboard.instantiateViewController(withIdentifier: id) as? Self else {
       fatalError("ViewController not found")
     }

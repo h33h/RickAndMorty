@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 class MenuCoordinator: BaseCoordinator {
   override func start() {
     let menuViewController: MenuViewController = DIContainer.shared.resolve()
+    
     navigationController.pushViewController(menuViewController, animated: true)
   }
 }
