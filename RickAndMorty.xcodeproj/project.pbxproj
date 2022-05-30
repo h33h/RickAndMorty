@@ -40,6 +40,7 @@
 		A91E62542844EEE800638DC8 /* EntityListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91E62532844EEE800638DC8 /* EntityListViewController.storyboard */; };
 		A91E62562844EF1900638DC8 /* EntityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E62552844EF1900638DC8 /* EntityListViewModel.swift */; };
 		A91E62682844F9A500638DC8 /* EntityListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E62672844F9A500638DC8 /* EntityListCoordinator.swift */; };
+		A91E626E2845146B00638DC8 /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91E626D2845146B00638DC8 /* EntityType.swift */; };
 		A94793E7283E6CFB0093DB35 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E6283E6CFB0093DB35 /* AppAssembly.swift */; };
 		A94793EA283E738E0093DB35 /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E9283E738E0093DB35 /* MenuCoordinator.swift */; };
 		A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793EB283E73C70093DB35 /* MenuViewModel.swift */; };
@@ -113,6 +114,7 @@
 		A91E62532844EEE800638DC8 /* EntityListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EntityListViewController.storyboard; sourceTree = "<group>"; };
 		A91E62552844EF1900638DC8 /* EntityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListViewModel.swift; sourceTree = "<group>"; };
 		A91E62672844F9A500638DC8 /* EntityListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityListCoordinator.swift; sourceTree = "<group>"; };
+		A91E626D2845146B00638DC8 /* EntityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		A94793E6283E6CFB0093DB35 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		A94793E9283E738E0093DB35 /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
 		A94793EB283E73C70093DB35 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -216,12 +218,12 @@
 		A90C496D2841150E001E004F /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				A91E626D2845146B00638DC8 /* EntityType.swift */,
 				A90C496E28411564001E004F /* Character.swift */,
 				A90C49702841165D001E004F /* Location.swift */,
 				A90C497228411889001E004F /* Episode.swift */,
 				A90C497428411A75001E004F /* ResponseInfo.swift */,
 				A90C497628411AF7001E004F /* Response.swift */,
-				A91E626B28450D6B00638DC8 /* EntityType.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -681,13 +683,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A91E626C28450D6B00638DC8 /* EntityType.swift in Sources */,
 				A9E5C2A6283E601000842AF7 /* DIContainer.swift in Sources */,
 				A90C498728426338001E004F /* CharacterCell.swift in Sources */,
 				A90C4961283F8F04001E004F /* TabBarController.swift in Sources */,
 				A90C49692840C186001E004F /* TabBarItemState.swift in Sources */,
 				A9E5C2A3283E5AE600842AF7 /* AppCoordinator.swift in Sources */,
 				A9E5C2A0283E4D8100842AF7 /* BaseCoordinator.swift in Sources */,
+				A91E626E2845146B00638DC8 /* EntityType.swift in Sources */,
 				A90C498928426349001E004F /* LocationCell.swift in Sources */,
 				A90C497528411A75001E004F /* ResponseInfo.swift in Sources */,
 				A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */,
