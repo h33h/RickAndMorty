@@ -1,5 +1,5 @@
 //
-//  CustomTabBarItem.swift
+//  TabBarItemContent.swift
 //  RickAndMorty
 //
 //  Created by XXX on 26.05.22.
