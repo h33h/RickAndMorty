@@ -26,6 +26,13 @@
 		A90C497F28413A11001E004F /* EpisodeRequestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C497E28413A11001E004F /* EpisodeRequestSettings.swift */; };
 		A90C49812842408D001E004F /* RequestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C49802842408D001E004F /* RequestSettings.swift */; };
 		A90C4984284253BD001E004F /* RickAndMortyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C4983284253BD001E004F /* RickAndMortyService.swift */; };
+		A90C498728426338001E004F /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C498628426338001E004F /* CharacterCell.swift */; };
+		A90C498928426349001E004F /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C498828426349001E004F /* LocationCell.swift */; };
+		A90C498B28426366001E004F /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C498A28426366001E004F /* EpisodeCell.swift */; };
+		A90C498D284263A9001E004F /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90C498C284263A9001E004F /* CharacterCell.xib */; };
+		A90C498F284263D3001E004F /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90C498E284263D3001E004F /* EpisodeCell.xib */; };
+		A90C4991284263EC001E004F /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90C4990284263EC001E004F /* LocationCell.xib */; };
+		A90C4993284267B3001E004F /* LifeStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90C4992284267B3001E004F /* LifeStatusIndicator.swift */; };
 		A94793E7283E6CFB0093DB35 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E6283E6CFB0093DB35 /* AppAssembly.swift */; };
 		A94793EA283E738E0093DB35 /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793E9283E738E0093DB35 /* MenuCoordinator.swift */; };
 		A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94793EB283E73C70093DB35 /* MenuViewModel.swift */; };
@@ -87,6 +94,13 @@
 		A90C497E28413A11001E004F /* EpisodeRequestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeRequestSettings.swift; sourceTree = "<group>"; };
 		A90C49802842408D001E004F /* RequestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSettings.swift; sourceTree = "<group>"; };
 		A90C4983284253BD001E004F /* RickAndMortyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyService.swift; sourceTree = "<group>"; };
+		A90C498628426338001E004F /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		A90C498828426349001E004F /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		A90C498A28426366001E004F /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		A90C498C284263A9001E004F /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
+		A90C498E284263D3001E004F /* EpisodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
+		A90C4990284263EC001E004F /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		A90C4992284267B3001E004F /* LifeStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeStatusIndicator.swift; sourceTree = "<group>"; };
 		A94793E6283E6CFB0093DB35 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		A94793E9283E738E0093DB35 /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
 		A94793EB283E73C70093DB35 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -159,7 +173,9 @@
 		A90C495C283F8926001E004F /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A90C4985284262DA001E004F /* CollectionCells */,
 				A90C495D283F893A001E004F /* TabBar */,
+				A90C4992284267B3001E004F /* LifeStatusIndicator.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -208,6 +224,19 @@
 				A90C49802842408D001E004F /* RequestSettings.swift */,
 			);
 			path = RequestSettings;
+			sourceTree = "<group>";
+		};
+		A90C4985284262DA001E004F /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+				A90C498628426338001E004F /* CharacterCell.swift */,
+				A90C498C284263A9001E004F /* CharacterCell.xib */,
+				A90C498828426349001E004F /* LocationCell.swift */,
+				A90C4990284263EC001E004F /* LocationCell.xib */,
+				A90C498A28426366001E004F /* EpisodeCell.swift */,
+				A90C498E284263D3001E004F /* EpisodeCell.xib */,
+			);
+			path = CollectionCells;
 			sourceTree = "<group>";
 		};
 		A94793E5283E6A620093DB35 /* Assemblies */ = {
@@ -468,9 +497,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9E5C275283E0B2C00842AF7 /* LaunchScreen.storyboard in Resources */,
+				A90C4991284263EC001E004F /* LocationCell.xib in Resources */,
 				A9E5C272283E0B2C00842AF7 /* Assets.xcassets in Resources */,
+				A90C498D284263A9001E004F /* CharacterCell.xib in Resources */,
 				A90C4963283F9C35001E004F /* TabBarItemView.xib in Resources */,
 				A9E5C270283E0B2300842AF7 /* Menu.storyboard in Resources */,
+				A90C498F284263D3001E004F /* EpisodeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,10 +648,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9E5C2A6283E601000842AF7 /* DIContainer.swift in Sources */,
+				A90C498728426338001E004F /* CharacterCell.swift in Sources */,
 				A90C4961283F8F04001E004F /* TabBarController.swift in Sources */,
 				A90C49692840C186001E004F /* TabBarItemState.swift in Sources */,
 				A9E5C2A3283E5AE600842AF7 /* AppCoordinator.swift in Sources */,
 				A9E5C2A0283E4D8100842AF7 /* BaseCoordinator.swift in Sources */,
+				A90C498928426349001E004F /* LocationCell.swift in Sources */,
 				A90C497528411A75001E004F /* ResponseInfo.swift in Sources */,
 				A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */,
 				A9E5C29E283E4CC200842AF7 /* Coordinator.swift in Sources */,
@@ -630,9 +664,11 @@
 				A9E5C269283E0B2300842AF7 /* AppDelegate.swift in Sources */,
 				A90C497F28413A11001E004F /* EpisodeRequestSettings.swift in Sources */,
 				A94793EE283E741F0093DB35 /* MenuAssembly.swift in Sources */,
+				A90C498B28426366001E004F /* EpisodeCell.swift in Sources */,
 				A90C497328411889001E004F /* Episode.swift in Sources */,
 				A90C497928412705001E004F /* RickAndMortyAPI.swift in Sources */,
 				A90C49812842408D001E004F /* RequestSettings.swift in Sources */,
+				A90C4993284267B3001E004F /* LifeStatusIndicator.swift in Sources */,
 				A90C495F283F8972001E004F /* CustomTabBarItem.swift in Sources */,
 				A90C497B284138F3001E004F /* CharacterRequestSettings.swift in Sources */,
 				A90C49712841165D001E004F /* Location.swift in Sources */,
