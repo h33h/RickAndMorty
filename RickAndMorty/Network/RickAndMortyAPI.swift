@@ -8,15 +8,11 @@
 import Moya
 
 enum RickAndMortyAPI {
-  case getCharacters(params: CharacterRequestSettings)
-  case getLocations(params: LocationRequestSettings)
-  case getEpisodes(params: EpisodeRequestSettings)
+  case getEntities(settings: RequestSettings)
 
   var settings: RequestSettings {
     switch self {
-    case .getCharacters(let params): return params
-    case .getLocations(let params): return params
-    case .getEpisodes(let params): return params
+    case .getEntities(let settings): return settings
     }
   }
 }

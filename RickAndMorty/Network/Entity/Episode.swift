@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Episode: Codable {
+struct Episode: Codable, EntityType {
+  typealias EntityRequest = EpisodeRequestSettings
   let id: Int
   let name: String
   let airDate: String

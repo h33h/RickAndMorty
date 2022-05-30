@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Response<T: Codable>: Codable {
+struct Response<T: EntityType>: Codable {
   let info: ResponseInfo
   let results: [T]
 }

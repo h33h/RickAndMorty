@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Location: Codable {
+struct Location: Codable, EntityType {
+  typealias EntityRequest = LocationRequestSettings
   let id: Int
   let name: String
   let type: String

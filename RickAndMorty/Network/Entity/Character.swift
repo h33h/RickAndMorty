@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Character: Codable {
+struct Character: Codable, EntityType {
+  typealias EntityRequest = CharacterRequestSettings
   let id: Int
   let name: String
   let status: String
