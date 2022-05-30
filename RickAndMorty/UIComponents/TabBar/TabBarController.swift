@@ -8,11 +8,11 @@
 import SnapKit
 import UIKit
 
-protocol TabBarItem {
+protocol TabBarItem: CaseIterable {
   var content: TabBarItemContent { get }
 }
 
-class TabBarController<T: CaseIterable & TabBarItem>: UIViewController {
+class TabBarController<T: TabBarItem>: UIViewController {
   lazy var currentTabView: UIView = { UIView() }()
   lazy var stackView: UIStackView = {
     let stackView = UIStackView()
