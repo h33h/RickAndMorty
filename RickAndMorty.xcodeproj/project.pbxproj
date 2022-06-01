@@ -315,6 +315,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		A9D5668728480C04006EAC26 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A90C496C284114A1001E004F /* Network */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		A9E5C25C283E0B2300842AF7 = {
 			isa = PBXGroup;
 			children = (
@@ -340,8 +348,8 @@
 		A9E5C267283E0B2300842AF7 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				A9D5668728480C04006EAC26 /* Service */,
 				A91E62492844E88300638DC8 /* Extensions */,
-				A90C496C284114A1001E004F /* Network */,
 				A90C495C283F8926001E004F /* UIComponents */,
 				A94793EF283E78DD0093DB35 /* Utils */,
 				A9E5C2A4283E5FE200842AF7 /* DependencyInjection */,
