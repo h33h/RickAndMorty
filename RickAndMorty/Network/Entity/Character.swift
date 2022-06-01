@@ -7,23 +7,40 @@
 
 import Foundation
 
-struct Character: Codable, EntityType {
-  typealias EntityRequest = CharacterRequestSettings
+enum LifeStatus: String, Codable {
+  case alive = "Alive"
+  case dead = "Dead"
+  case unknown
+}
+
+enum GenderStatus: String, Codable {
+  case female = "Female"
+  case male = "Male"
+  case genderless = "Genderless"
+  case unknown
+}
+
+struct Character: Codable {
   let id: Int
   let name: String
-  let status: String
+  let status: LifeStatus
   let species: String
   let type: String
-  let gender: String
+  let gender: GenderStatus
   let origin: CharacterLocation
   let location: CharacterLocation
-  let image: URL
-  let episode: [URL]
-  let url: URL
+  @OptionalCodable var image: URL?
+  @OptionalCodable var episode: [URL?]?
+  @OptionalCodable var url: URL?
   let created: Date
 }
 
 struct CharacterLocation: Codable {
   let name: String
-  let url: URL
+  @OptionalCodable var url: URL?
+}
+
+extension Character: EntityType {
+  typealias EntityRequest = CharacterRequestSettings
+  typealias CellType = CharacterCell
 }

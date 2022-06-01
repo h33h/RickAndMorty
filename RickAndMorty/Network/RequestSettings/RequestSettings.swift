@@ -9,6 +9,7 @@ import Foundation
 
 protocol RequestSettings {
   var basePath: String { get }
+  var page: Int? { get }
   var ids: [Int]? { get }
   var parameters: [String: Any] { get }
 }

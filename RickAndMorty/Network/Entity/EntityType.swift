@@ -9,4 +9,5 @@ import Foundation
 
 protocol EntityType: Codable {
   associatedtype EntityRequest: RequestSettings
+  associatedtype CellType: CellConfigurable
 }

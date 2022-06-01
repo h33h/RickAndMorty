@@ -14,10 +14,12 @@ struct EpisodeRequestSettings: RequestSettings {
     var requestParams: [String: Any] = [:]
     requestParams["name"] = name
     requestParams["episode"] = episode
+    requestParams["page"] = page
     return requestParams
   }
 
   let ids: [Int]? = nil
+  let page: Int? = nil
   let name: String? = nil
   let episode: String? = nil
 }

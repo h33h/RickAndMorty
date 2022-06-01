@@ -7,13 +7,17 @@
 
 import Foundation
 
-struct Location: Codable, EntityType {
-  typealias EntityRequest = LocationRequestSettings
+struct Location: Codable {
   let id: Int
   let name: String
   let type: String
   let dimension: String
-  let residents: [URL]
-  let url: URL
+  @OptionalCodable var residents: [URL?]?
+  @OptionalCodable var url: URL?
   let created: Date
+}
+
+extension Location: EntityType {
+  typealias EntityRequest = LocationRequestSettings
+  typealias CellType = LocationCell
 }

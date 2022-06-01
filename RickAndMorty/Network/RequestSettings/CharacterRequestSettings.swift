@@ -17,10 +17,12 @@ struct CharacterRequestSettings: RequestSettings {
     requestParams["species"] = species
     requestParams["type"] = type
     requestParams["gender"] = gender
+    requestParams["page"] = page
     return requestParams
   }
 
   let ids: [Int]? = nil
+  let page: Int? = nil
   let name: String? = nil
   let status: String? = nil
   let species: String? = nil

@@ -9,10 +9,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-enum LifeStatus: String {
-  case alive = "Alive"
-  case dead = "Dead"
-
+extension LifeStatus {
   var icon: UIImage {
     switch self {
     case .alive:
@@ -21,11 +18,13 @@ enum LifeStatus: String {
     case .dead:
       let deadImage = UIImage(named: "deadIcon", in: Bundle(for: LifeStatusIndicator.self), with: nil) ?? UIImage()
       return deadImage
+    case .unknown:
+      let unknownImage = UIImage(systemName: "questionmark") ?? UIImage()
+      return unknownImage
     }
   }
 }
 
-@IBDesignable
 class LifeStatusIndicator: UIView {
   private lazy var icon: UIImageView = {
     let icon = UIImageView()
@@ -40,8 +39,17 @@ class LifeStatusIndicator: UIView {
   }()
   private let currentStatus = BehaviorSubject<LifeStatus>(value: .alive)
   private let disposeBag = DisposeBag()
-  @IBInspectable var isAlive: Bool = true {
-    didSet { isAlive ? currentStatus.onNext(.alive) : currentStatus.onNext(.dead) }
+  var isAlive: LifeStatus = .alive {
+    didSet {
+      switch isAlive {
+      case .alive:
+        currentStatus.onNext(.alive)
+      case .dead:
+        currentStatus.onNext(.dead)
+      case .unknown:
+        currentStatus.onNext(.unknown)
+      }
+    }
   }
 
   override init(frame: CGRect) {
@@ -73,7 +81,7 @@ class LifeStatusIndicator: UIView {
     currentStatus.subscribe(onNext: { [weak self] status in
       guard let self = self else { return }
       self.icon.image = status.icon
-      self.textStatus.text = status.rawValue
+      self.textStatus.text = status.rawValue.firstUppercased
     })
     .disposed(by: disposeBag)
   }

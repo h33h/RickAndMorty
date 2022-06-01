@@ -10,6 +10,6 @@ import Foundation
 struct ResponseInfo: Codable {
   let count: Int
   let pages: Int
-  let next: URL?
-  let prev: URL?
+  @OptionalCodable var next: URL?
+  @OptionalCodable var prev: URL?
 }

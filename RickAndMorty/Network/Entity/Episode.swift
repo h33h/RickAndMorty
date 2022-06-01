@@ -7,14 +7,13 @@
 
 import Foundation
 
-struct Episode: Codable, EntityType {
-  typealias EntityRequest = EpisodeRequestSettings
+struct Episode: Codable {
   let id: Int
   let name: String
   let airDate: String
   let episode: String
-  let characters: [URL]
-  let url: URL
+  @OptionalCodable var characters: [URL?]?
+  @OptionalCodable var url: URL?
   let created: Date
 
   enum CodingKeys: String, CodingKey {
@@ -26,4 +25,9 @@ struct Episode: Codable, EntityType {
     case url
     case created
   }
+}
+
+extension Episode: EntityType {
+  typealias EntityRequest = EpisodeRequestSettings
+  typealias CellType = EpisodeCell
 }

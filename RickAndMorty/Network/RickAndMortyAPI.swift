@@ -19,7 +19,7 @@ enum RickAndMortyAPI {
 
 extension RickAndMortyAPI: TargetType {
   public var baseURL: URL {
-    guard let url = URL(string: "https://rickandmortyapi.com") else { fatalError("Сonversion URL error") }
+    guard let url = URL(string: "https://rickandmortyapi.com/api") else { fatalError("Сonversion URL error") }
     return url
   }
 

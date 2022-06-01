@@ -15,10 +15,12 @@ struct LocationRequestSettings: RequestSettings {
     requestParams["name"] = name
     requestParams["type"] = type
     requestParams["dimension"] = dimension
+    requestParams["page"] = page
     return requestParams
   }
 
   let ids: [Int]? = nil
+  let page: Int? = nil
   let name: String? = nil
   let type: String? = nil
   let dimension: String? = nil
