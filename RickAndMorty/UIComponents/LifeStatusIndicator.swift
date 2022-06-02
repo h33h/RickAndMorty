@@ -13,10 +13,16 @@ extension LifeStatus {
   var icon: UIImage {
     switch self {
     case .alive:
-      let aliveImage = UIImage(named: "aliveIcon", in: Bundle(for: LifeStatusIndicator.self), with: nil) ?? UIImage()
+      let aliveImage = UIImage(
+        named: "aliveIcon",
+        in: Bundle(for: LifeStatusIndicator.self),
+        with: nil) ?? UIImage()
       return aliveImage
     case .dead:
-      let deadImage = UIImage(named: "deadIcon", in: Bundle(for: LifeStatusIndicator.self), with: nil) ?? UIImage()
+      let deadImage = UIImage(
+        named: "deadIcon",
+        in: Bundle(for: LifeStatusIndicator.self),
+        with: nil) ?? UIImage()
       return deadImage
     case .unknown:
       let unknownImage = UIImage(systemName: "questionmark") ?? UIImage()
@@ -25,19 +31,25 @@ extension LifeStatus {
   }
 }
 
+private enum Constants {
+  static var textStatus = UIDimension(idents: UIIdents(left: 5))
+}
+
 class LifeStatusIndicator: UIView {
   private lazy var icon: UIImageView = {
     let icon = UIImageView()
-    icon.image = try? currentStatus.value().icon
+    icon.image = LifeStatus.unknown.icon
+    icon.contentMode = .scaleAspectFit
+    icon.tintColor = .black
     return icon
   }()
   private lazy var textStatus: UILabel = {
     let textStatus = UILabel()
-    textStatus.text = try? currentStatus.value().rawValue
+    textStatus.text = LifeStatus.unknown.rawValue
     textStatus.font = UIFont(name: "Avenir Next Medium", size: 14)
     return textStatus
   }()
-  private let currentStatus = BehaviorSubject<LifeStatus>(value: .alive)
+  private let currentStatus = PublishSubject<LifeStatus>()
   private let disposeBag = DisposeBag()
   var isAlive: LifeStatus = .alive {
     didSet {
@@ -62,7 +74,7 @@ class LifeStatusIndicator: UIView {
     setupComponents()
   }
 
-  func setupComponents() {
+  private func setupComponents() {
     addSubview(icon)
     icon.snp.makeConstraints { make in
       make.left.equalTo(snp.left)
@@ -72,17 +84,20 @@ class LifeStatusIndicator: UIView {
     }
     addSubview(textStatus)
     textStatus.snp.makeConstraints { make in
-      make.left.equalTo(icon.snp.right).offset(5)
+      make.left.equalTo(icon.snp.right).offset(Constants.textStatus.idents.left)
       make.top.equalTo(snp.top)
       make.bottom.equalTo(snp.bottom)
       make.right.equalTo(snp.right)
     }
 
-    currentStatus.subscribe(onNext: { [weak self] status in
-      guard let self = self else { return }
-      self.icon.image = status.icon
-      self.textStatus.text = status.rawValue.firstUppercased
-    })
-    .disposed(by: disposeBag)
+    currentStatus
+      .subscribe(
+        onNext: { [weak self] status in
+          guard let self = self else { return }
+          self.icon.image = status.icon
+          self.textStatus.text = status.rawValue.firstUppercased
+        }
+      )
+      .disposed(by: disposeBag)
   }
 }
