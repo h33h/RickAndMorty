@@ -12,15 +12,19 @@ protocol TabBarItem: CaseIterable {
   var content: TabBarItemContent { get }
 }
 
+private enum Constants {
+  static var stackView = UIDimension(idents: UIIdents(left: 20, right: 20), size: CGSize(height: 70))
+}
+
 class TabBarController<T: TabBarItem>: UIViewController {
-  lazy var currentTabView: UIView = { UIView() }()
-  lazy var stackView: UIStackView = {
+  private(set) lazy var currentTabView = UIView()
+  private(set) lazy var stackView: UIStackView = {
     let stackView = UIStackView()
     stackView.alignment = .fill
     stackView.distribution = .equalSpacing
     return stackView
   }()
-  private(set) var currentIndex = 0
+  private(set) var currentIndex: Int = .zero
   private(set) var tabs: [TabBarItemView] = []
   private(set) var viewControllers: [UIViewController] = []
 
@@ -46,9 +50,9 @@ class TabBarController<T: TabBarItem>: UIViewController {
     view.addSubview(stackView)
     stackView.snp.makeConstraints { make in
       make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-      make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
-      make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
-      make.height.equalTo(70)
+      make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(Constants.stackView.idents.left)
+      make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(Constants.stackView.idents.right)
+      make.height.equalTo(Constants.stackView.size.height)
     }
     view.addSubview(currentTabView)
     currentTabView.snp.makeConstraints { make in
@@ -59,10 +63,11 @@ class TabBarController<T: TabBarItem>: UIViewController {
     }
     setupTabs()
   }
+
   private func setupTabs() {
     for (index, tab) in T.allCases.enumerated() {
       let tabView = TabBarItemView.instantiate(with: tab.content)
-      if index == 0 { tabView.switchState(with: TabBarItemSelectedState(tabBarItemView: tabView)) }
+      if index == .zero { tabView.switchState(with: TabBarItemSelectedState(tabBarItemView: tabView)) }
       tabView.delegate = self
       tabs.append(tabView)
       self.stackView.addArrangedSubview(tabView)
@@ -73,7 +78,11 @@ class TabBarController<T: TabBarItem>: UIViewController {
 extension TabBarController: TabBarItemViewDelegate {
   func didSelect(_ tabBarItemView: TabBarItemView) {
     tabs[currentIndex].switchState(with: TabBarItemNotSelectedState(to: tabs[currentIndex]))
-    currentIndex = tabs.firstIndex { $0 === tabBarItemView } ?? 0
-    switchCurrentTabView(with: viewControllers[currentIndex])
+    currentIndex = tabs.firstIndex { $0 === tabBarItemView } ?? .zero
+    if currentIndex < viewControllers.count {
+      switchCurrentTabView(with: viewControllers[currentIndex])
+    } else {
+      fatalError("There is no viewController for this tab, setup viewControllers for all tabs")
+    }
   }
 }

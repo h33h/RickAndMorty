@@ -5,20 +5,20 @@
 //  Created by XXX on 26.05.22.
 //
 
-import Foundation
+import UIKit
 
-class TabBarItemContent {
+struct TabBarItemContent {
   var title: String
-  var imageName: String
-  var selectedImageName: String
+  var image: UIImage
+  var selectedImage: UIImage
 
-  init(title: String, imageName: String, selectedImageName: String? = nil) {
+  init(title: String, image: UIImage, selectedImage: UIImage? = nil) {
     self.title = title
-    self.imageName = imageName
-    if let selectedImageName = selectedImageName {
-      self.selectedImageName = selectedImageName
+    self.image = image
+    if let selectedImage = selectedImage {
+      self.selectedImage = selectedImage
     } else {
-      self.selectedImageName = imageName
+      self.selectedImage = image
     }
   }
 }

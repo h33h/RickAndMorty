@@ -54,7 +54,7 @@ class TabBarItemView: UIView {
 }
 
 extension TabBarItemView {
-  func addTapGesture() {
+  private func addTapGesture() {
     rx
     .tapGesture()
     .when(.recognized)

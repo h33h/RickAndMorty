@@ -14,9 +14,18 @@ enum MenuTabBarItem: TabBarItem {
   case episodes
   var content: TabBarItemContent {
     switch self {
-    case .characters: return TabBarItemContent(title: "Characters", imageName: "person.3")
-    case .locations: return TabBarItemContent(title: "Locations", imageName: "location")
-    case .episodes: return TabBarItemContent(title: "Episodes", imageName: "play.tv")
+    case .characters: return TabBarItemContent(
+      title: "Characters",
+      image: UIImage(systemName: "person.3") ?? UIImage()
+    )
+    case .locations: return TabBarItemContent(
+      title: "Locations",
+      image: UIImage(systemName: "location") ?? UIImage()
+    )
+    case .episodes: return TabBarItemContent(
+      title: "Episodes",
+      image: UIImage(systemName: "play.tv") ?? UIImage()
+    )
     }
   }
 }

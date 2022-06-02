@@ -11,6 +11,13 @@ protocol TabBarItemState {
   func updateUI()
 }
 
+private enum Constants {
+  static var animationDuration = 0.4
+  static var animationDelay = 0.0
+  static var animationSpringDamping = 1.0
+  static var animationSpringVelocity = 0.5
+}
+
 class TabBarItemSelectedState: TabBarItemState {
   private weak var tabBarItemView: TabBarItemView?
 
@@ -21,14 +28,14 @@ class TabBarItemSelectedState: TabBarItemState {
   func updateUI() {
     guard let content = tabBarItemView?.content else { return }
     UIView.animate(
-      withDuration: 0.4,
-      delay: 0.0,
-      usingSpringWithDamping: 1.0,
-      initialSpringVelocity: 0.5,
+      withDuration: Constants.animationDuration,
+      delay: Constants.animationDelay,
+      usingSpringWithDamping: Constants.animationSpringDamping,
+      initialSpringVelocity: Constants.animationSpringVelocity,
       options: .curveEaseIn,
       animations: { [weak self] in
         self?.tabBarItemView?.titleLabel.text = content.title
-        self?.tabBarItemView?.imageView.image = UIImage(systemName: content.selectedImageName)
+        self?.tabBarItemView?.imageView.image = content.selectedImage
         self?.tabBarItemView?.backgroundView.backgroundColor = UIColor.appGreen
         self?.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)
@@ -45,14 +52,14 @@ class TabBarItemNotSelectedState: TabBarItemState {
   func updateUI() {
     guard let content = tabBarItemView?.content else { return }
     UIView.animate(
-      withDuration: 0.4,
-      delay: 0.0,
-      usingSpringWithDamping: 1.0,
-      initialSpringVelocity: 0.5,
+      withDuration: Constants.animationDuration,
+      delay: Constants.animationDelay,
+      usingSpringWithDamping: Constants.animationSpringDamping,
+      initialSpringVelocity: Constants.animationSpringVelocity,
       options: .curveEaseOut,
       animations: { [weak self] in
-        self?.tabBarItemView?.titleLabel.text = ""
-        self?.tabBarItemView?.imageView.image = UIImage(systemName: content.imageName)
+        self?.tabBarItemView?.titleLabel.text = String()
+        self?.tabBarItemView?.imageView.image = content.image
         self?.tabBarItemView?.backgroundView.backgroundColor = .clear
         self?.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)
