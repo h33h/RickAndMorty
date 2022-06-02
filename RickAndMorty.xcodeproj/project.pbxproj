@@ -52,6 +52,8 @@
 		A979DCF9284651B100871188 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A979DCF8284651B100871188 /* ShadowView.swift */; };
 		A9AE3CE328461626009CA1A3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AE3CE228461626009CA1A3 /* ReusableView.swift */; };
 		A9AE3CE528461CDD009CA1A3 /* CellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AE3CE428461CDD009CA1A3 /* CellConfigurable.swift */; };
+		A9D5668928480C4E006EAC26 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5668828480C4E006EAC26 /* ImageService.swift */; };
+		A9D5668B28481486006EAC26 /* ImageProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5668A28481486006EAC26 /* ImageProxyService.swift */; };
 		A9E5C269283E0B2300842AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5C268283E0B2300842AF7 /* AppDelegate.swift */; };
 		A9E5C26B283E0B2300842AF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5C26A283E0B2300842AF7 /* SceneDelegate.swift */; };
 		A9E5C26D283E0B2300842AF7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5C26C283E0B2300842AF7 /* MenuViewController.swift */; };
@@ -132,6 +134,8 @@
 		A979DCF8284651B100871188 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		A9AE3CE228461626009CA1A3 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		A9AE3CE428461CDD009CA1A3 /* CellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurable.swift; sourceTree = "<group>"; };
+		A9D5668828480C4E006EAC26 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		A9D5668A28481486006EAC26 /* ImageProxyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProxyService.swift; sourceTree = "<group>"; };
 		A9E5C265283E0B2300842AF7 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9E5C268283E0B2300842AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9E5C26A283E0B2300842AF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -319,6 +323,8 @@
 			isa = PBXGroup;
 			children = (
 				A90C496C284114A1001E004F /* Network */,
+				A9D5668828480C4E006EAC26 /* ImageService.swift */,
+				A9D5668A28481486006EAC26 /* ImageProxyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -720,6 +726,7 @@
 				A90C498928426349001E004F /* LocationCell.swift in Sources */,
 				A90C497528411A75001E004F /* ResponseInfo.swift in Sources */,
 				A9AE3CE528461CDD009CA1A3 /* CellConfigurable.swift in Sources */,
+				A9D5668B28481486006EAC26 /* ImageProxyService.swift in Sources */,
 				A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */,
 				A9E5C29E283E4CC200842AF7 /* Coordinator.swift in Sources */,
 				A90C4965283F9FF4001E004F /* TabBarItemView.swift in Sources */,
@@ -749,6 +756,7 @@
 				A90C497D284139AE001E004F /* LocationRequestSettings.swift in Sources */,
 				A91E62562844EF1900638DC8 /* EntityListViewModel.swift in Sources */,
 				A90C4984284253BD001E004F /* RickAndMortyNetworkService.swift in Sources */,
+				A9D5668928480C4E006EAC26 /* ImageService.swift in Sources */,
 				A9E5C26B283E0B2300842AF7 /* SceneDelegate.swift in Sources */,
 				A94793F1283E78F80093DB35 /* Storyboarded.swift in Sources */,
 			);

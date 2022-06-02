@@ -8,9 +8,9 @@
 import UIKit
 
 class EpisodeCell: FullWidthCollectionViewCell {
-  @IBOutlet var episodeNameLabel: UILabel!
-  @IBOutlet var episodeLaunchDateLabel: UILabel!
-  @IBOutlet var episodeCodeLabel: UILabel!
+  @IBOutlet weak var episodeNameLabel: UILabel!
+  @IBOutlet weak var episodeLaunchDateLabel: UILabel!
+  @IBOutlet weak var episodeCodeLabel: UILabel!
 }
 
 extension EpisodeCell: CellConfigurable {

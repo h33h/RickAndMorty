@@ -8,9 +8,9 @@
 import UIKit
 
 class LocationCell: FullWidthCollectionViewCell {
-  @IBOutlet var locationNameLabel: UILabel!
-  @IBOutlet var locationTypeLabel: UILabel!
-  @IBOutlet var locationDimensionLabel: UILabel!
+  @IBOutlet weak var locationNameLabel: UILabel!
+  @IBOutlet weak var locationTypeLabel: UILabel!
+  @IBOutlet weak var locationDimensionLabel: UILabel!
 }
 
 extension LocationCell: CellConfigurable {
