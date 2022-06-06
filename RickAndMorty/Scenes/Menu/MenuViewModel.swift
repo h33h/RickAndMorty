@@ -7,6 +7,12 @@
 
 import Foundation
 
-class MenuViewModel {
-  
+class MenuViewModel: ViewModel {
+  struct Input {}
+  struct Output {}
+  weak var coordinator: MenuCoordinator?
+  func transorm(input: Input) -> Output {
+    Output()
+  }
+
 }

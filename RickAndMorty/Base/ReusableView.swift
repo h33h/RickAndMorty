@@ -5,7 +5,6 @@
 //  Created by XXX on 31.05.22.
 //
 
-import Foundation
 import UIKit
 
 protocol ReusableView {

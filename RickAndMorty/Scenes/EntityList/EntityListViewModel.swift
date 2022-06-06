@@ -6,46 +6,41 @@
 //
 
 import RxSwift
+import RxRelay
+import RxCocoa
 
-class EntityListViewModel<T: EntityType> {
-  private lazy var service: RickAndMortyNetworkService<T> = { RickAndMortyNetworkService<T>() }()
-  private lazy var decoder: JSONDecoder = {
-    let decoder = JSONDecoder()
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-    decoder.dateDecodingStrategy = .formatted(dateFormatter)
-    return decoder
-  }()
+class EntityListViewModel<T: EntityType>: ViewModel {
+  struct Input {}
+  struct Output {}
+  private var entityService: EntityProvider?
   private let disposeBag = DisposeBag()
-  let entities: PublishSubject<[T]> = PublishSubject()
-  let loadingProgress: PublishSubject<Double> = PublishSubject()
+  private(set) var requestSettings: T.EntityRequest?
+  let entities: BehaviorRelay<[T]> = BehaviorRelay(value: [])
   let isLoading: PublishSubject<Bool> = PublishSubject()
-  func getEntities(with config: T.EntityRequest) {
+
+  weak var coordinator: EntityListCoordinator<T>?
+
+  func transorm(input: Input) -> Output {Output()}
+
+  init(entityService: EntityProvider) {
+    self.entityService = entityService
+  }
+
+  func updateRequestSettings(with settings: T.EntityRequest) {
+    requestSettings = settings
+  }
+
+  func getEntities() {
+    guard let settings = requestSettings else { return }
     isLoading.onNext(true)
-    service.getEntities(with: config)
-      .observe(on: MainScheduler.instance)
+    entityService?.getEntities(entityType: T.self, with: settings)
       .subscribe { [weak self] event in
         guard let self = self else { return }
         switch event {
-        case .next(let progressResponse):
-          if let response = progressResponse.response {
-            do {
-            let decoded = try response.map(
-              Response<T>.self,
-              atKeyPath: nil,
-              using: self.decoder,
-              failsOnEmptyData: true)
-            self.entities.onNext(decoded.results)
-            } catch {
-              print(error.localizedDescription)
-            }
-            self.loadingProgress.onNext(Double.zero)
-            self.isLoading.onNext(false)
-          } else {
-            self.loadingProgress.onNext(progressResponse.progress)
-          }
-        case .error(let error): print(error.localizedDescription)
-        default: break
+        case .success(let response):
+          self.entities.accept(self.entities.value + response.results)
+          self.isLoading.onNext(false)
+        case .failure(let error): print(error.localizedDescription)
         }
       }
       .disposed(by: disposeBag)

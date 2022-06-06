@@ -51,4 +51,11 @@ class DIContainer {
     }
     return resolvedType
   }
+
+  func resolve<T, Arg1, Arg2, Arg3>(arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> T {
+    guard let resolvedType = container.resolve(T.self, arguments: arg1, arg2, arg3) else {
+      fatalError("Not found resolvedType")
+    }
+    return resolvedType
+  }
 }

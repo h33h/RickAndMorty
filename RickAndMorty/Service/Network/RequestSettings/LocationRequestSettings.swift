@@ -5,12 +5,10 @@
 //  Created by XXX on 27.05.22.
 //
 
-import Foundation
-
 struct LocationRequestSettings: RequestSettings {
-  let basePath: String = "/location"
+  let basePath = "/location"
 
-  var parameters: [String : Any] {
+  var parameters: [String: Any] {
     var requestParams: [String: Any] = [:]
     requestParams["name"] = name
     requestParams["type"] = type
@@ -19,9 +17,9 @@ struct LocationRequestSettings: RequestSettings {
     return requestParams
   }
 
-  let ids: [Int]? = nil
-  let page: Int? = nil
-  let name: String? = nil
-  let type: String? = nil
-  let dimension: String? = nil
+  var ids: [Int] = []
+  var page: Int = 1
+  var name: String? = nil
+  var type: String? = nil
+  var dimension: String? = nil
 }

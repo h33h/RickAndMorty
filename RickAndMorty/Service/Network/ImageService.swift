@@ -8,13 +8,9 @@
 import RxSwift
 import Alamofire
 
-protocol ImageProvider {
-  func getImage(with url: URL) -> Single<UIImage>
-}
-
 class ImageService: ImageProvider {
   func getImage(with url: URL) -> Single<UIImage> {
-    Single<UIImage>.create { single in
+    .create { single in
       let request = AF.request(url).response { response in
         if let error = response.error {
           single(.failure(error))

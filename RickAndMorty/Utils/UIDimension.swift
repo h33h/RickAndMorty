@@ -8,6 +8,6 @@
 import UIKit
 
 struct UIDimension {
-  var idents = UIIdents()
+  var idents = UIEdgeInsets()
   var size = CGSize()
 }

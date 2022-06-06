@@ -13,8 +13,6 @@ class FullWidthCollectionViewCell: UICollectionViewCell {
     withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
     verticalFittingPriority: UILayoutPriority
   ) -> CGSize {
-    var targetSize = targetSize
-    targetSize.height = CGFloat.greatestFiniteMagnitude
     let size = super.systemLayoutSizeFitting(
       targetSize,
       withHorizontalFittingPriority: .required,

@@ -9,7 +9,7 @@ import Swinject
 
 class AppAssembly: Assembly {
   func assemble(container: Container) {
-    container.register(AppCoordinator.self) { resolver, window in
+    container.register(AppCoordinator.self) { _, window in
       AppCoordinator(window: window)
     }
   }

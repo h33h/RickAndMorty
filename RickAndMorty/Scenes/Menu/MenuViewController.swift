@@ -8,44 +8,82 @@
 import UIKit
 import SnapKit
 
-enum MenuTabBarItem: TabBarItem {
-  case characters
-  case locations
-  case episodes
-  var content: TabBarItemContent {
-    switch self {
-    case .characters: return TabBarItemContent(
-      title: "Characters",
-      image: UIImage(systemName: "person.3") ?? UIImage()
-    )
-    case .locations: return TabBarItemContent(
-      title: "Locations",
-      image: UIImage(systemName: "location") ?? UIImage()
-    )
-    case .episodes: return TabBarItemContent(
-      title: "Episodes",
-      image: UIImage(systemName: "play.tv") ?? UIImage()
-    )
-    }
+class MenuViewController: TabBarController, Storyboarded {
+  private enum Constants {
+    static var navigationBarView = UIDimension(
+      idents: UIEdgeInsets(
+        left: 15,
+        right: 15,
+        top: 0,
+        bottom: 0),
+      size: CGSize(height: 55))
+    static var titleImage = UIImage(named: "textLogo")
+    static var sortButtonImage = UIImage(systemName: "arrow.up.arrow.down.circle")
   }
-}
-
-class MenuViewController: UIViewController, Storyboarded {
-  @IBOutlet var tabBarControllerView: UIView!
-  lazy var menuTabBarController: TabBarController<MenuTabBarItem> = { TabBarController<MenuTabBarItem>()
+  private(set) lazy var navigationBarView: UIStackView = {
+    let navigationBarView = UIStackView()
+    navigationBarView.distribution = .equalCentering
+    navigationBarView.alignment = .fill
+    navigationBarView.isLayoutMarginsRelativeArrangement = true
+    navigationBarView.layoutMargins = Constants.navigationBarView.idents
+    return navigationBarView
+  }()
+  private(set) lazy var indicatorBackgroundView = UIView()
+  private(set) lazy var indicatorView: UIActivityIndicatorView = {
+    let indicatorView = UIActivityIndicatorView()
+    indicatorBackgroundView.addSubview(indicatorView)
+    indicatorView.hidesWhenStopped = true
+    indicatorView.stopAnimating()
+    return indicatorView
+  }()
+  private(set) lazy var titleImageView: UIImageView = {
+    let titleImageView = UIImageView()
+    titleImageView.image = Constants.titleImage
+    titleImageView.contentMode = .scaleAspectFit
+    return titleImageView
+  }()
+  private(set) lazy var sortButton: UIButton = {
+    let sortButton = UIButton()
+    sortButton.setImage(Constants.sortButtonImage, for: .normal)
+    sortButton.contentMode = .scaleAspectFit
+    sortButton.setPreferredSymbolConfiguration(.init(pointSize: 25), forImageIn: .normal)
+    sortButton.tintColor = .appCyan
+    sortButton.layer.shadowColor = UIColor.appGreen.cgColor
+    sortButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+    return sortButton
   }()
   var viewModel: MenuViewModel?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.navigationBar.isHidden = true
-    tabBarControllerView.addSubview(menuTabBarController.view)
-    menuTabBarController.view.snp.makeConstraints { make in
-      make.edges.equalTo(tabBarControllerView.snp.edges)
-    }
   }
 
-  @IBAction func sortButtonTapped(_ sender: Any) {
-    
+  override func setupUI() {
+    super.setupUI()
+    view.addSubview(navigationBarView)
+    navigationBarView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+      make.left.equalTo(view.snp.left)
+      make.right.equalTo(view.snp.right)
+      make.height.equalTo(Constants.navigationBarView.size.height)
+    }
+    currentTabView.snp.makeConstraints { make in
+      make.top.equalTo(navigationBarView.snp.bottom)
+      make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
+      make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
+      make.bottom.equalTo(stackView.snp.top)
+    }
+    navigationBarView.addArrangedSubview(indicatorBackgroundView)
+    navigationBarView.addArrangedSubview(titleImageView)
+    navigationBarView.addArrangedSubview(sortButton)
+    sortButton.snp.makeConstraints { make in
+      make.width.equalTo(sortButton.snp.height)
+    }
+    indicatorBackgroundView.snp.makeConstraints { make in
+      make.width.equalTo(indicatorBackgroundView.snp.height)
+    }
+    indicatorView.snp.makeConstraints { make in
+      make.edges.equalTo(indicatorBackgroundView.snp.edges)
+    }
   }
 }

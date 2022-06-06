@@ -5,51 +5,78 @@
 //  Created by XXX on 26.05.22.
 //
 
+import UIKit
 import RxGesture
 import RxSwift
-import UIKit
+import RxRelay
+import SnapKit
 
-protocol TabBarItemViewDelegate: AnyObject {
-  func didSelect(_ tabBarItemView: TabBarItemView)
+private enum Constants {
+  static let imageView = UIDimension(idents: UIEdgeInsets(left: 6))
+  static let backgroundViewCornerRadius = 12.0
+  static let titleLabel = UIDimension(idents: UIEdgeInsets(left: 6, right: 6))
+  static let titleFont = UIFont(name: "Avenir Next Medium", size: 18)
 }
 
 class TabBarItemView: UIView {
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var backgroundView: UIView!
+  private(set) lazy var titleLabel: UILabel = {
+    let titleLabel = UILabel()
+    titleLabel.font = Constants.titleFont
+    titleLabel.textColor = .appCyan
+    return titleLabel
+  }()
+  private(set) lazy var imageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.tintColor = .appCyan
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
+  private(set) lazy var backgroundView: UIView = {
+    let backgroundView = UIView()
+    backgroundView.layer.cornerRadius = Constants.backgroundViewCornerRadius
+    return backgroundView
+  }()
 
   private let disposeBag = DisposeBag()
-  private lazy var state: TabBarItemState = TabBarItemNotSelectedState(to: self)
-  private(set) var content: TabBarItemContent?
+  let itemSelected = PublishRelay<TabBarItemView>()
+  private var state: TabBarItemState? {
+    didSet { state?.updateUI() }
+  }
+  private(set) var tabBarItemContent: TabBarItemContent
 
-  weak var delegate: TabBarItemViewDelegate?
+  init(tabBarItemContent: TabBarItemContent) {
+    self.tabBarItemContent = tabBarItemContent
+    super.init(frame: .zero)
+    setupUI()
+    addTapGesture()
+  }
 
-  static func instantiate(with content: TabBarItemContent) -> TabBarItemView {
-    guard let instance = Bundle.main.loadNibNamed(
-      String(describing: TabBarItemView.self),
-      owner: nil,
-      options: nil
-    )?.first as? TabBarItemView else {
-      fatalError("CustomTabBarItemView not found")
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func setupUI() {
+    addSubview(backgroundView)
+    backgroundView.snp.makeConstraints { make in
+      make.edges.equalTo(snp.edges)
     }
-    instance.content = content
-    instance.state.updateUI()
-    return instance
+    addSubview(imageView)
+    imageView.snp.makeConstraints { make in
+      make.width.equalTo(imageView.snp.height)
+      make.centerY.equalTo(backgroundView.snp.centerY)
+      make.left.equalTo(backgroundView.snp.left).offset(Constants.imageView.idents.left)
+    }
+    addSubview(titleLabel)
+    titleLabel.snp.makeConstraints { make in
+      make.left.equalTo(imageView.snp.right).offset(Constants.titleLabel.idents.left)
+      make.right.equalTo(backgroundView.snp.right).inset(Constants.titleLabel.idents.right)
+      make.centerY.equalTo(imageView.snp.centerY)
+    }
   }
 
   func switchState(with state: TabBarItemState) {
     self.state = state
     state.updateUI()
-  }
-
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    addTapGesture()
-  }
-
-  override func updateConstraints() {
-    super.updateConstraints()
-    backgroundView.layer.cornerRadius = backgroundView.frame.height / 4
   }
 }
 
@@ -58,13 +85,14 @@ extension TabBarItemView {
     rx
     .tapGesture()
     .when(.recognized)
-    .subscribe(onNext: { [weak self] _ in
-      guard let self = self else { return }
-      if self.state is TabBarItemNotSelectedState {
-        self.switchState(with: TabBarItemSelectedState(tabBarItemView: self))
-        self.delegate?.didSelect(self)
+    .subscribe(
+      onNext: { [weak self] _ in
+        guard let self = self else { return }
+        if self.state is TabBarItemNotSelectedState {
+          self.itemSelected.accept(self)
+        }
       }
-    })
+    )
     .disposed(by: disposeBag)
   }
 }

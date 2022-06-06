@@ -5,8 +5,6 @@
 //  Created by XXX on 30.05.22.
 //
 
-import Foundation
-
 @propertyWrapper
 struct OptionalCodable<Wrapped: Codable>: Codable {
   var wrappedValue: Wrapped?
@@ -14,6 +12,10 @@ struct OptionalCodable<Wrapped: Codable>: Codable {
   init(from decoder: Decoder) throws {
     let container = try decoder.singleValueContainer()
     wrappedValue = try? container.decode(Wrapped.self)
+  }
+
+  init() {
+    wrappedValue = nil
   }
 
   func encode(to encoder: Encoder) throws {

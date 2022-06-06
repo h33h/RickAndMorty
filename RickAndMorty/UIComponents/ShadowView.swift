@@ -7,15 +7,15 @@
 
 import UIKit
 
-private enum Constants {
-  static var cornerRadius = 8.0
-  static var shadowOffset = CGSize(width: 0, height: 3)
-  static var shadowRadius = 3.0
-  static var shadowOpacity = 0.3
-  static var shadowPathCornerRadius = 13.0
-}
-
 class ShadowView: UIView {
+  private enum Constants {
+    static var cornerRadius = 8.0
+    static var shadowOffset = CGSize(width: 0, height: 3)
+    static var shadowRadius = 3.0
+    static var shadowOpacity = 0.3
+    static var shadowPathCornerRadius = 13.0
+  }
+
   override func layoutSubviews() {
     super.layoutSubviews()
     setupShadow()

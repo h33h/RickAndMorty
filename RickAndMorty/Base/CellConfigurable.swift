@@ -9,5 +9,6 @@ import UIKit
 
 protocol CellConfigurable: UICollectionViewCell {
   associatedtype Item: EntityType
+  @discardableResult
   func configure(with item: Item) -> Self
 }

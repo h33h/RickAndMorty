@@ -31,11 +31,12 @@ extension LifeStatus {
   }
 }
 
-private enum Constants {
-  static var textStatus = UIDimension(idents: UIIdents(left: 5))
-}
-
 class LifeStatusIndicator: UIView {
+  private enum Constants {
+    static var textStatus = UIDimension(idents: UIEdgeInsets(left: 5))
+    static var textStatusFont = UIFont(name: "Avenir Next Medium", size: 14)
+  }
+
   private lazy var icon: UIImageView = {
     let icon = UIImageView()
     icon.image = LifeStatus.unknown.icon
@@ -46,7 +47,7 @@ class LifeStatusIndicator: UIView {
   private lazy var textStatus: UILabel = {
     let textStatus = UILabel()
     textStatus.text = LifeStatus.unknown.rawValue
-    textStatus.font = UIFont(name: "Avenir Next Medium", size: 14)
+    textStatus.font = Constants.textStatusFont
     return textStatus
   }()
   private let currentStatus = PublishSubject<LifeStatus>()

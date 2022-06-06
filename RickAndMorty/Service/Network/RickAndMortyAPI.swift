@@ -18,19 +18,24 @@ enum RickAndMortyAPI {
 }
 
 extension RickAndMortyAPI: TargetType {
-  public var baseURL: URL {
-    guard let url = URL(string: "https://rickandmortyapi.com/api") else { fatalError("Сonversion URL error") }
-    return url
+  private enum Constants {
+    static var apiUrl = "https://rickandmortyapi.com/api"
+    static var contentTypeHeader = "Content-type"
+    static var contentTypeValue = "application/json"
   }
 
-  public var path: String { settings.path() }
+  var baseURL: URL { URL(string: Constants.apiUrl)! }
 
-  public var method: Method { .get }
+  var path: String { settings.path() }
 
-  public var task: Task {
+  var method: Method { .get }
+
+  var task: Task {
     if settings.parameters.isEmpty { return .requestPlain }
     return .requestParameters(parameters: settings.parameters, encoding: URLEncoding.queryString)
   }
 
-  public var headers: [String: String]? { ["Content-type": "application/json"] }
+  var headers: [String: String]? {
+    [Constants.contentTypeHeader: Constants.contentTypeValue]
+  }
 }

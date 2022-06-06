@@ -9,29 +9,44 @@ import UIKit
 import RxSwift
 
 class CharacterCell: FullWidthCollectionViewCell {
-  @IBOutlet weak var characterImageView: UIImageView!
-  @IBOutlet weak var characterNameLabel: UILabel!
-  @IBOutlet weak var characterSpeciesLabel: UILabel!
-  @IBOutlet weak var characterLifeStatus: LifeStatusIndicator!
-  private var previousImageUrl: URL?
-  private var imageService: ImageProvider?
+  @IBOutlet private(set) weak var characterImageView: UIImageView!
+  @IBOutlet private(set) weak var characterNameLabel: UILabel!
+  @IBOutlet private(set) weak var characterSpeciesLabel: UILabel!
+  @IBOutlet private(set) weak var characterLifeStatus: LifeStatusIndicator!
+  @IBOutlet private(set) weak var imageActivityIndicator: UIActivityIndicatorView!
+  @IBOutlet private(set) weak var imageLoadingErrorView: UIView!
+  @IBOutlet private(set) weak var imageLoadingErrorDescription: UILabel!
+
+  private var currentImageRequest: Disposable?
   private let disposeBag = DisposeBag()
+  var imageService: ImageProvider?
 
   private func updateImage(with url: URL?) {
     guard let url = url else { return }
-    previousImageUrl = url
-    imageService?.getImage(with: url)
+    imageActivityIndicator.startAnimating()
+    currentImageRequest = imageService?.getImage(with: url)
+      .observe(on: MainScheduler.instance)
       .subscribe(
         onSuccess: { [weak self] image in
-          guard
-            let self = self,
-            let previousImageUrl = self.previousImageUrl,
-            previousImageUrl == url
-          else { return }
+          guard let self = self else { return }
+          self.imageActivityIndicator.stopAnimating()
           self.characterImageView.image = image
+        },
+        onFailure: { [weak self] error in
+          guard let self = self else { return }
+          self.imageActivityIndicator.stopAnimating()
+          self.imageLoadingErrorDescription.text = error.localizedDescription
+          self.imageLoadingErrorView.isHidden = false
         }
       )
-      .disposed(by: disposeBag)
+  }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    currentImageRequest?.dispose()
+    imageActivityIndicator.stopAnimating()
+    imageLoadingErrorView.isHidden = true
+    characterImageView.image = nil
   }
 }
 

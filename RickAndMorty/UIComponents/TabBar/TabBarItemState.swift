@@ -26,7 +26,6 @@ class TabBarItemSelectedState: TabBarItemState {
   }
 
   func updateUI() {
-    guard let content = tabBarItemView?.content else { return }
     UIView.animate(
       withDuration: Constants.animationDuration,
       delay: Constants.animationDelay,
@@ -34,23 +33,23 @@ class TabBarItemSelectedState: TabBarItemState {
       initialSpringVelocity: Constants.animationSpringVelocity,
       options: .curveEaseIn,
       animations: { [weak self] in
-        self?.tabBarItemView?.titleLabel.text = content.title
-        self?.tabBarItemView?.imageView.image = content.selectedImage
-        self?.tabBarItemView?.backgroundView.backgroundColor = UIColor.appGreen
-        self?.tabBarItemView?.superview?.layoutIfNeeded()
+        guard let self = self, let content = self.tabBarItemView?.tabBarItemContent else { return }
+        self.tabBarItemView?.titleLabel.text = content.title
+        self.tabBarItemView?.imageView.image = content.selectedImage
+        self.tabBarItemView?.backgroundView.backgroundColor = .appGreen
+        self.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)
   }
 }
 
 class TabBarItemNotSelectedState: TabBarItemState {
   private weak var tabBarItemView: TabBarItemView?
-
-  init(to tabBarItemView: TabBarItemView?) {
+  
+  init(tabBarItemView: TabBarItemView?) {
     self.tabBarItemView = tabBarItemView
   }
 
   func updateUI() {
-    guard let content = tabBarItemView?.content else { return }
     UIView.animate(
       withDuration: Constants.animationDuration,
       delay: Constants.animationDelay,
@@ -58,10 +57,11 @@ class TabBarItemNotSelectedState: TabBarItemState {
       initialSpringVelocity: Constants.animationSpringVelocity,
       options: .curveEaseOut,
       animations: { [weak self] in
-        self?.tabBarItemView?.titleLabel.text = String()
-        self?.tabBarItemView?.imageView.image = content.image
-        self?.tabBarItemView?.backgroundView.backgroundColor = .clear
-        self?.tabBarItemView?.superview?.layoutIfNeeded()
+        guard let self = self, let content = self.tabBarItemView?.tabBarItemContent else { return }
+        self.tabBarItemView?.titleLabel.text = String()
+        self.tabBarItemView?.imageView.image = content.image
+        self.tabBarItemView?.backgroundView.backgroundColor = .clear
+        self.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)
   }
 }
