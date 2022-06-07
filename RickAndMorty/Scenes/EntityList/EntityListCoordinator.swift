@@ -7,9 +7,7 @@
 
 import UIKit
 
-class EntityListCoordinator<T: EntityType>: BaseCoordinator, Presentable {
-  var viewController: ViewController?
-
+class EntityListCoordinator<T: EntityType>: BaseCoordinator {
   override func start() {
     DIContainer.shared.assembler.apply(assembly: CellAssembly<T>())
     let viewController: EntityListViewController<T> = DIContainer.shared.resolve()

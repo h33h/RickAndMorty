@@ -61,6 +61,10 @@
 		A9BD27A8284C744C0071D4B2 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27A7284C744C0071D4B2 /* ImageProvider.swift */; };
 		A9BD27AC284CA6410071D4B2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27AB284CA6410071D4B2 /* ViewModel.swift */; };
 		A9BD27AE284CAAF30071D4B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27AD284CAAF30071D4B2 /* ViewController.swift */; };
+		A9BD27B0284E1B320071D4B2 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27AF284E1B310071D4B2 /* Observable+Extensions.swift */; };
+		A9BD27B2284E30F20071D4B2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27B1284E30F20071D4B2 /* NavigationController.swift */; };
+		A9BD27B4284EA5E00071D4B2 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27B3284EA5E00071D4B2 /* UIView+Extensions.swift */; };
+		A9BD27B6284EB5BA0071D4B2 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BD27B5284EB5BA0071D4B2 /* TabBarItem.swift */; };
 		A9D5668928480C4E006EAC26 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5668828480C4E006EAC26 /* ImageService.swift */; };
 		A9D5668B28481486006EAC26 /* ImageProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5668A28481486006EAC26 /* ImageProxyService.swift */; };
 		A9E5C269283E0B2300842AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E5C268283E0B2300842AF7 /* AppDelegate.swift */; };
@@ -152,6 +156,10 @@
 		A9BD27A7284C744C0071D4B2 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		A9BD27AB284CA6410071D4B2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		A9BD27AD284CAAF30071D4B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A9BD27AF284E1B310071D4B2 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
+		A9BD27B1284E30F20071D4B2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		A9BD27B3284EA5E00071D4B2 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		A9BD27B5284EB5BA0071D4B2 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		A9D5668828480C4E006EAC26 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		A9D5668A28481486006EAC26 /* ImageProxyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProxyService.swift; sourceTree = "<group>"; };
 		A9E5C265283E0B2300842AF7 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,6 +244,7 @@
 				A90C4960283F8F04001E004F /* TabBarController.swift */,
 				A90C4964283F9FF4001E004F /* TabBarItemView.swift */,
 				A90C49682840C186001E004F /* TabBarItemState.swift */,
+				A9BD27B5284EB5BA0071D4B2 /* TabBarItem.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -300,6 +309,8 @@
 				A979DCF42846497900871188 /* UICollectionView+Extensions.swift */,
 				A912BDF628489282002D61FF /* CGSize+Extensions.swift */,
 				A912BDF82848AFE8002D61FF /* UIEdgeInsets+Extensions.swift */,
+				A9BD27AF284E1B310071D4B2 /* Observable+Extensions.swift */,
+				A9BD27B3284EA5E00071D4B2 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +458,7 @@
 				A912BDFE2848EEF5002D61FF /* Presentable.swift */,
 				A9BD27AB284CA6410071D4B2 /* ViewModel.swift */,
 				A9BD27AD284CAAF30071D4B2 /* ViewController.swift */,
+				A9BD27B1284E30F20071D4B2 /* NavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -739,6 +751,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9E5C2A6283E601000842AF7 /* DIContainer.swift in Sources */,
+				A9BD27B6284EB5BA0071D4B2 /* TabBarItem.swift in Sources */,
 				A90C498728426338001E004F /* CharacterCell.swift in Sources */,
 				A91FE5AA2845580D00E78D50 /* OptionalCodable.swift in Sources */,
 				A90C4961283F8F04001E004F /* TabBarController.swift in Sources */,
@@ -754,6 +767,7 @@
 				A90C498928426349001E004F /* LocationCell.swift in Sources */,
 				A90C497528411A75001E004F /* ResponseInfo.swift in Sources */,
 				A9AE3CE528461CDD009CA1A3 /* CellConfigurable.swift in Sources */,
+				A9BD27B0284E1B320071D4B2 /* Observable+Extensions.swift in Sources */,
 				A912BDF92848AFE8002D61FF /* UIEdgeInsets+Extensions.swift in Sources */,
 				A9D5668B28481486006EAC26 /* ImageProxyService.swift in Sources */,
 				A94793EC283E73C70093DB35 /* MenuViewModel.swift in Sources */,
@@ -779,8 +793,10 @@
 				A91E62512844EEC000638DC8 /* EntityListViewController.swift in Sources */,
 				A9BD27AE284CAAF30071D4B2 /* ViewController.swift in Sources */,
 				A90C4993284267B3001E004F /* LifeStatusIndicator.swift in Sources */,
+				A9BD27B4284EA5E00071D4B2 /* UIView+Extensions.swift in Sources */,
 				A912BDF728489282002D61FF /* CGSize+Extensions.swift in Sources */,
 				A90C495F283F8972001E004F /* TabBarItemContent.swift in Sources */,
+				A9BD27B2284E30F20071D4B2 /* NavigationController.swift in Sources */,
 				A90C497B284138F3001E004F /* CharacterRequestSettings.swift in Sources */,
 				A90C49712841165D001E004F /* Location.swift in Sources */,
 				A9BD27A2284C674F0071D4B2 /* NetworkError.swift in Sources */,

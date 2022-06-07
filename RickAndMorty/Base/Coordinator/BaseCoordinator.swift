@@ -8,7 +8,8 @@
 import UIKit
 
 class BaseCoordinator: Coordinator {
-  var navigationController = UINavigationController()
+  var viewController: UIViewController?
+  var navigationController: UINavigationController = NavigationController()
   var parentCoordinator: Coordinator?
   var childCoordinators: [Coordinator] = []
 

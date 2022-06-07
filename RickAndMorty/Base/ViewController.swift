@@ -11,6 +11,10 @@ import RxSwift
 class ViewController: UIViewController {
   let disposeBag = DisposeBag()
 
+  var navi: NavigationController? {
+    navigationController as? NavigationController
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -21,6 +25,5 @@ class ViewController: UIViewController {
 
   func setupUI() {
     view.backgroundColor = .systemBackground
-    navigationController?.navigationBar.isHidden = true
   }
 }

@@ -16,22 +16,27 @@ enum MenuTabBarItem: TabBarItem {
     switch self {
     case .characters: return TabBarItemContent(
       title: "Characters",
-      image: UIImage(systemName: "person.3") ?? UIImage()
+      image: UIImage(systemName: "person.3") ?? UIImage(),
+      tintColor: .appCyan,
+      backgroundColor: .appGreen
     )
     case .locations: return TabBarItemContent(
       title: "Locations",
-      image: UIImage(systemName: "location") ?? UIImage()
+      image: UIImage(systemName: "location") ?? UIImage(),
+      tintColor: .appCyan,
+      backgroundColor: .appGreen
     )
     case .episodes: return TabBarItemContent(
       title: "Episodes",
-      image: UIImage(systemName: "play.tv") ?? UIImage()
+      image: UIImage(systemName: "play.tv") ?? UIImage(),
+      tintColor: .appCyan,
+      backgroundColor: .appGreen
     )
     }
   }
 }
 
-class MenuCoordinator: BaseCoordinator, Presentable {
-  var viewController: ViewController?
+class MenuCoordinator: BaseCoordinator {
   override func start() {
     let menuViewController: MenuViewController = DIContainer.shared.resolve()
     viewController = menuViewController
@@ -43,9 +48,12 @@ class MenuCoordinator: BaseCoordinator, Presentable {
     let characterCoordinator: EntityListCoordinator<Character> = DIContainer.shared.resolve()
     let locationCoordinator: EntityListCoordinator<Location> = DIContainer.shared.resolve()
     let episodeCoordinator: EntityListCoordinator<Episode> = DIContainer.shared.resolve()
-    let tabs: [BaseCoordinator & Presentable] = [characterCoordinator, locationCoordinator, episodeCoordinator]
-    tabs.forEach { $0.start() }
-    menuViewController.setTabs(tabBarItemType: MenuTabBarItem.self, with: tabs.compactMap { $0.viewController })
+    [characterCoordinator, locationCoordinator, episodeCoordinator].forEach { coordinate(to: $0) }
+    var tabs: [(MenuTabBarItem, Presentable)] = []
+    tabs.append((.characters, characterCoordinator))
+    tabs.append((.locations, locationCoordinator))
+    tabs.append((.episodes, episodeCoordinator))
+    menuViewController.setTabs(tabs)
     navigationController.pushViewController(menuViewController, animated: true)
   }
 }

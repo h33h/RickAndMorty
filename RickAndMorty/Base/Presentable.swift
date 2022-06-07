@@ -5,6 +5,8 @@
 //  Created by XXX on 2.06.22.
 //
 
+import UIKit
+
 protocol Presentable {
-  var viewController: ViewController? { get }
+  var viewController: UIViewController? { get }
 }

@@ -6,53 +6,46 @@
 //
 
 import UIKit
-import RxGesture
-import RxSwift
-import RxRelay
 import SnapKit
 
-private enum Constants {
-  static let imageView = UIDimension(idents: UIEdgeInsets(left: 6))
-  static let backgroundViewCornerRadius = 12.0
-  static let titleLabel = UIDimension(idents: UIEdgeInsets(left: 6, right: 6))
-  static let titleFont = UIFont(name: "Avenir Next Medium", size: 18)
-}
-
 class TabBarItemView: UIView {
+  private enum Constants {
+    static let imageView = UIDimension(idents: UIEdgeInsets(left: 6))
+    static let titleLabel = UIDimension(idents: UIEdgeInsets(left: 6, right: 6))
+    static let titleFont = UIFont(name: "Avenir Next Medium", size: 18)
+  }
+
   private(set) lazy var titleLabel: UILabel = {
     let titleLabel = UILabel()
     titleLabel.font = Constants.titleFont
-    titleLabel.textColor = .appCyan
     return titleLabel
   }()
   private(set) lazy var imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.tintColor = .appCyan
     imageView.contentMode = .scaleAspectFit
     return imageView
   }()
   private(set) lazy var backgroundView: UIView = {
     let backgroundView = UIView()
-    backgroundView.layer.cornerRadius = Constants.backgroundViewCornerRadius
     return backgroundView
   }()
 
-  private let disposeBag = DisposeBag()
-  let itemSelected = PublishRelay<TabBarItemView>()
-  private var state: TabBarItemState? {
-    didSet { state?.updateUI() }
-  }
-  private(set) var tabBarItemContent: TabBarItemContent
+  private(set) var state: TabBarItemState?
+  private(set) var tabBarItemContent: TabBarItemContent?
 
-  init(tabBarItemContent: TabBarItemContent) {
-    self.tabBarItemContent = tabBarItemContent
-    super.init(frame: .zero)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
     setupUI()
-    addTapGesture()
   }
 
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: coder)
+    setupUI()
+  }
+
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    backgroundView.setRoundedCorners()
   }
 
   private func setupUI() {
@@ -74,25 +67,12 @@ class TabBarItemView: UIView {
     }
   }
 
+  func setContent(_ content: TabBarItemContent) {
+    tabBarItemContent = content
+  }
+
   func switchState(with state: TabBarItemState) {
     self.state = state
     state.updateUI()
-  }
-}
-
-extension TabBarItemView {
-  private func addTapGesture() {
-    rx
-    .tapGesture()
-    .when(.recognized)
-    .subscribe(
-      onNext: { [weak self] _ in
-        guard let self = self else { return }
-        if self.state is TabBarItemNotSelectedState {
-          self.itemSelected.accept(self)
-        }
-      }
-    )
-    .disposed(by: disposeBag)
   }
 }

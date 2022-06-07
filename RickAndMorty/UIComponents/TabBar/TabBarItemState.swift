@@ -35,8 +35,10 @@ class TabBarItemSelectedState: TabBarItemState {
       animations: { [weak self] in
         guard let self = self, let content = self.tabBarItemView?.tabBarItemContent else { return }
         self.tabBarItemView?.titleLabel.text = content.title
+        self.tabBarItemView?.titleLabel.textColor = content.tintColor
         self.tabBarItemView?.imageView.image = content.selectedImage
-        self.tabBarItemView?.backgroundView.backgroundColor = .appGreen
+        self.tabBarItemView?.imageView.tintColor = content.tintColor
+        self.tabBarItemView?.backgroundView.backgroundColor = content.backgroundColor
         self.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)
   }
@@ -44,7 +46,7 @@ class TabBarItemSelectedState: TabBarItemState {
 
 class TabBarItemNotSelectedState: TabBarItemState {
   private weak var tabBarItemView: TabBarItemView?
-  
+
   init(tabBarItemView: TabBarItemView?) {
     self.tabBarItemView = tabBarItemView
   }
@@ -59,7 +61,9 @@ class TabBarItemNotSelectedState: TabBarItemState {
       animations: { [weak self] in
         guard let self = self, let content = self.tabBarItemView?.tabBarItemContent else { return }
         self.tabBarItemView?.titleLabel.text = String()
+        self.tabBarItemView?.titleLabel.textColor = content.tintColor
         self.tabBarItemView?.imageView.image = content.image
+        self.tabBarItemView?.imageView.tintColor = content.tintColor
         self.tabBarItemView?.backgroundView.backgroundColor = .clear
         self.tabBarItemView?.superview?.layoutIfNeeded()
       }, completion: nil)

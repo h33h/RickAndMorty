@@ -6,71 +6,75 @@
 //
 
 import SnapKit
+import RxGesture
+import RxSwift
 import UIKit
 
-protocol TabBarItem: CaseIterable {
-  var content: TabBarItemContent { get }
-}
-
-private enum Constants {
-  static var stackView = UIDimension(
-    idents: UIEdgeInsets(
-      left: 15,
-      right: 15,
-      top: 10,
-      bottom: 10),
-    size: CGSize(height: 55))
-  static var dividerLineWidth = 1.0
-}
-
 class TabBarController: ViewController {
+  private enum Constants {
+    static var tabBar = UIDimension(
+      idents: UIEdgeInsets(left: 15, right: 15, top: 10, bottom: 10),
+      size: CGSize(height: 55))
+    static var dividerLineWidth = 0.3
+  }
   private(set) lazy var currentTabView = UIView()
-  private(set) lazy var stackView: UIStackView = {
+  private(set) lazy var tabBar: UIStackView = {
     let stackView = UIStackView()
     stackView.alignment = .fill
     stackView.distribution = .equalSpacing
     stackView.backgroundColor = .systemBackground
     stackView.isLayoutMarginsRelativeArrangement = true
-    stackView.layoutMargins = Constants.stackView.idents
+    stackView.layoutMargins = Constants.tabBar.idents
     return stackView
   }()
-  private(set) lazy var lineView: LineView = {
+  private lazy var lineView: LineView = {
     let lineView = LineView()
-    lineView.color = .black
+    lineView.color = view.tintColor
     lineView.lineWidth = Constants.dividerLineWidth
     return lineView
   }()
-  private(set) var tabs: [TabBarItemView: ViewController] = [:]
-  private(set) var currentTab: TabBarItemView?
+  private(set) var tabs: [TabBarItemView: Presentable] = [:]
+  private(set) var currentTab = PublishSubject<TabBarItemView>()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupBinds()
   }
 
-  func setTabs<T: TabBarItem>(tabBarItemType: T.Type, with viewControllers: [ViewController]) {
-    if T.allCases.count == viewControllers.count {
-      for (index, tab) in T.allCases.enumerated() {
-        let itemView = TabBarItemView(tabBarItemContent: tab.content)
-        self.tabs[itemView] = viewControllers[index]
+  func setTabs<T: TabBarItem>(_ tabs: [(tabBarItem: T, presentable: Presentable)]) {
+    for (index, tab) in tabs.enumerated() {
+      let itemView = TabBarItemView()
+      itemView.setContent(tab.tabBarItem.content)
+      self.tabs[itemView] = tab.presentable
+      if index == .zero {
+        currentTab.onNext(itemView)
+      } else {
         itemView.switchState(with: TabBarItemNotSelectedState(tabBarItemView: itemView))
-        if index == .zero {
-          switchCurrentTab(with: itemView)
-        }
-        itemView.itemSelected.subscribe(onNext: { [weak self] item in
-          guard let self = self else { return }
-          self.switchCurrentTab(with: item)
-        })
-        .disposed(by: disposeBag)
-        stackView.addArrangedSubview(itemView)
       }
+      setTapGesture(to: itemView)
+      tabBar.addArrangedSubview(itemView)
     }
   }
 
-  private func switchCurrentTab(with tab: TabBarItemView) {
-    currentTab?.switchState(with: TabBarItemNotSelectedState(tabBarItemView: currentTab))
-    currentTab = tab
-    tab.switchState(with: TabBarItemSelectedState(tabBarItemView: tab))
-    guard let viewController = tabs[tab] else { return }
+  private func setTapGesture(to tabView: TabBarItemView) {
+    tabView
+      .rx
+      .tapGesture()
+      .when(.recognized)
+      .do(onNext: { [weak self] tap in
+        guard
+          let self = self,
+          let tabTapped = tap.view as? TabBarItemView
+        else { return }
+        self.currentTab.onNext(tabTapped)
+      })
+      .emptyDriverIfError()
+      .drive()
+    .disposed(by: disposeBag)
+  }
+
+  private func switchCurrentTabViewController(with tab: TabBarItemView) {
+    guard let viewController = tabs[tab]?.viewController else { return }
     currentTabView.subviews.forEach { $0.removeFromSuperview() }
     currentTabView.addSubview(viewController.view)
     viewController.view.snp.makeConstraints { make in
@@ -78,22 +82,45 @@ class TabBarController: ViewController {
     }
   }
 
+  private func setupBinds() {
+    currentTab
+      .do(onNext: { [weak self] currentTab in
+        guard let self = self else { return }
+        currentTab.switchState(with: TabBarItemSelectedState(tabBarItemView: currentTab))
+        self.tabs.keys.forEach { tab in
+          if tab !== currentTab {
+            tab.switchState(with: TabBarItemNotSelectedState(tabBarItemView: tab))
+          }
+          self.switchCurrentTabViewController(with: currentTab)
+        }
+      })
+      .emptyDriverIfError()
+      .drive()
+      .disposed(by: disposeBag)
+  }
+
   override func setupUI() {
     super.setupUI()
     view.addSubview(currentTabView)
-    view.addSubview(stackView)
+    view.addSubview(tabBar)
     view.addSubview(lineView)
-    stackView.snp.makeConstraints { make in
+    tabBar.snp.makeConstraints { make in
       make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
       make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
       make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
-      make.height.equalTo(Constants.stackView.size.height)
+      make.height.equalTo(Constants.tabBar.size.height)
     }
     lineView.snp.makeConstraints { make in
       make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
       make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
-      make.bottom.equalTo(stackView.snp.top)
+      make.bottom.equalTo(tabBar.snp.top)
       make.height.equalTo(Constants.dividerLineWidth)
+    }
+    currentTabView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+      make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
+      make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
+      make.bottom.equalTo(tabBar.snp.top)
     }
   }
 }

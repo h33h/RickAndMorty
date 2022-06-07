@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol Coordinator: AnyObject {
+protocol Coordinator: AnyObject, Presentable {
   var navigationController: UINavigationController { get set }
   var parentCoordinator: Coordinator? { get set }
 
