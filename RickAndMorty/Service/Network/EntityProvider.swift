@@ -8,6 +8,5 @@
 import RxSwift
 
 protocol EntityProvider {
-  func getEntities<Entity: EntityType>(entityType: Entity.Type, with settings: Entity.EntityRequest) -> Single<Response<Entity>>
+  func getEntities<T: EntityType>(of type: T.Type, on page: Int, with settings: T.RequestType?) -> Single<Response<T>>
 }
-

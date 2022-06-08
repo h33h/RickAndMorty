@@ -9,13 +9,21 @@ import Swinject
 
 class EntityListAssembly<T: EntityType>: Assembly {
   func assemble(container: Container) {
-    container.register(EntityProvider.self) { _ in RickAndMortyNetworkService() }.inObjectScope(.container)
+    container.register(EntityProvider.self) { _ in RickAndMortyNetworkProvider() }.inObjectScope(.container)
+    container.register(FilterService<T>.self) { resolver in
+      guard let provider = resolver.resolve(EntityProvider.self) else { fatalError() }
+      return FilterService(entityProvider: provider, filterType: .none)
+    }
     container.register(EntityListCoordinator<T>.self) { _ in EntityListCoordinator<T>() }
     container.register(EntityListViewModel<T>.self) { resolver in
-      guard let service = resolver.resolve(EntityProvider.self), let coordinator = resolver.resolve(EntityListCoordinator<T>.self) else {
+      guard
+        let service = resolver.resolve(FilterService<T>.self),
+        let coordinator = resolver.resolve(EntityListCoordinator<T>.self)
+      else {
         fatalError("Error loading entityService")
       }
-      let viewModel = EntityListViewModel<T>(entityService: service, coordinator: coordinator)
+      let viewModel = EntityListViewModel<T>(filterService: service)
+      viewModel.coordinator = coordinator
       return viewModel
     }
     container.register(EntityListViewController<T>.self) { resolver in

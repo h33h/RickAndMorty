@@ -12,5 +12,5 @@ protocol ViewModel {
 
   var coordinator: CoordinatorType? { get set }
 
-  func transorm(input: Input) -> Output
+  func transform(input: Input) -> Output
 }

@@ -5,19 +5,21 @@
 //  Created by XXX on 27.05.22.
 //
 
-struct EpisodeRequestSettings: RequestSettings {
-  let basePath = "/episode"
-
-  var parameters: [String: Any] {
-    var requestParams: [String: Any] = [:]
-    requestParams["name"] = name
-    requestParams["episode"] = episode
-    requestParams["page"] = page
-    return requestParams
+enum EpisodeRequestParameter: RequestParameter {
+  case name(String)
+  case episode(String)
+  var parameter: (title: String, value: Any) {
+    switch self {
+    case .name(let name): return ("name", name)
+    case .episode(let episode): return ("episode", episode)
+    }
   }
+}
 
+struct EpisodeRequestSettings: RequestSettings {
+  var page: Int = 0
+  var requestParameter: EpisodeRequestParameter?
+  typealias Item = Episode
+  var basePath: String = "/episode"
   var ids: [Int] = []
-  var page: Int = 1
-  var name: String? = nil
-  var episode: String? = nil
 }

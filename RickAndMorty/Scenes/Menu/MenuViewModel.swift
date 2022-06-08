@@ -13,7 +13,7 @@ class MenuViewModel: ViewModel {
   }
   struct Output {}
   weak var coordinator: MenuCoordinator?
-  func transorm(input: Input) -> Output {
+  func transform(input: Input) -> Output {
     Output()
   }
 

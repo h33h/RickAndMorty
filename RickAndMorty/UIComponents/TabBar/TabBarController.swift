@@ -36,8 +36,13 @@ class TabBarController: ViewController {
   private(set) var tabs: [TabBarItemView: Presentable] = [:]
   private(set) var currentTab = PublishSubject<TabBarItemView>()
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    setupBinds()
+  }
+
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
     setupBinds()
   }
 

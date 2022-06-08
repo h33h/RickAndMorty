@@ -5,11 +5,20 @@
 //  Created by XXX on 27.05.22.
 //
 
-import Foundation
+import ObjectMapper
 
-struct ResponseInfo: Codable {
-  let count: Int
-  let pages: Int
-  @OptionalCodable var next: URL?
-  @OptionalCodable var prev: URL?
+struct ResponseInfo: Mappable {
+  var count: Int?
+  var pages: Int?
+  var next: String?
+  var prev: String?
+
+  init?(map: Map) { }
+
+  mutating func mapping(map: Map) {
+    count <- map["count"]
+    pages <- map["pages"]
+    next <- map["next"]
+    prev <- map["prev"]
+  }
 }

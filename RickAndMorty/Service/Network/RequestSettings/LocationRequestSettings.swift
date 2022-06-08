@@ -5,21 +5,23 @@
 //  Created by XXX on 27.05.22.
 //
 
-struct LocationRequestSettings: RequestSettings {
-  let basePath = "/location"
-
-  var parameters: [String: Any] {
-    var requestParams: [String: Any] = [:]
-    requestParams["name"] = name
-    requestParams["type"] = type
-    requestParams["dimension"] = dimension
-    requestParams["page"] = page
-    return requestParams
+enum LocationRequestParameter: RequestParameter {
+  case name(String)
+  case type(String)
+  case dimension(String)
+  var parameter: (title: String, value: Any) {
+    switch self {
+    case .name(let name): return ("name", name)
+    case .type(let type): return ("type", type)
+    case .dimension(let dimension): return ("dimension", dimension)
+    }
   }
+}
 
+struct LocationRequestSettings: RequestSettings {
+  var page: Int = 0
+  var requestParameter: LocationRequestParameter?
+  typealias Item = Location
+  var basePath: String = "/location"
   var ids: [Int] = []
-  var page: Int = 1
-  var name: String? = nil
-  var type: String? = nil
-  var dimension: String? = nil
 }

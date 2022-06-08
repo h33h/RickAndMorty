@@ -5,19 +5,32 @@
 //  Created by XXX on 27.05.22.
 //
 
-import Foundation
+import ObjectMapper
 
-struct Location: Codable {
-  let id: Int
-  let name: String
-  let type: String
-  let dimension: String
-  @OptionalCodable var residents: [URL?]?
-  @OptionalCodable var url: URL?
-  let created: Date
+struct Location: Mappable {
+  var id: Int?
+  var name: String?
+  var type: String?
+  var dimension: String?
+  var residents: [String?] = []
+  var url: String?
+  var created: Date?
+
+  init?(map: Map) { }
+
+  mutating func mapping(map: Map) {
+    id <- map["id"]
+    name <- map["name"]
+    type <- map["type"]
+    dimension <- map["dimension"]
+    residents <- map["residents"]
+    url <- map["url"]
+    created <- (map["created"], DateFormatterTransform.rickAndMortyDateFormatter)
+  }
 }
 
 extension Location: EntityType {
-  typealias EntityRequest = LocationRequestSettings
+  typealias RequestType = LocationRequestSettings
+  typealias ParameterType = LocationRequestParameter
   typealias CellType = LocationCell
 }

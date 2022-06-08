@@ -1,16 +1,14 @@
 //
-//  EntityListCoordinator.swift
+//  CharacterListCoordinator.swift
 //  RickAndMorty
 //
-//  Created by XXX on 30.05.22.
+//  Created by XXX on 7.06.22.
 //
 
-import UIKit
-
-class EntityListCoordinator<T: EntityType>: BaseCoordinator {
+class EntityListCoordinator<Entity: EntityType>: BaseCoordinator {
   override func start() {
-    DIContainer.shared.assembler.apply(assembly: CellAssembly<T>())
-    let viewController: EntityListViewController<T> = DIContainer.shared.resolve()
-    self.viewController = viewController
+    DIContainer.shared.assembler.apply(assembly: CellAssembly<Entity>())
+    let vc: EntityListViewController<Entity> = DIContainer.shared.resolve()
+    self.viewController = vc
   }
 }

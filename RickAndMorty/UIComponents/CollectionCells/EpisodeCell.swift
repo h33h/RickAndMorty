@@ -15,10 +15,9 @@ class EpisodeCell: FullWidthCollectionViewCell {
 
 extension EpisodeCell: CellConfigurable {
   typealias Item = Episode
-  func configure(with item: Episode) -> Self {
+  func configure(with item: Episode) {
     episodeNameLabel.text = item.name
     episodeLaunchDateLabel.text = item.airDate
     episodeCodeLabel.text = item.episode
-    return self
   }
 }

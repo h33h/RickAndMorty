@@ -28,7 +28,7 @@ class MenuViewController: TabBarController {
     navi?.addActionButton(sortButton)
     navi?.setTitle("Rick and Morty")
   }
-
+  
   override func bindViewModel() {
     super.bindViewModel()
   }

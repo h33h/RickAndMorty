@@ -5,9 +5,10 @@
 //  Created by XXX on 30.05.22.
 //
 
-import Foundation
+import ObjectMapper
 
-protocol EntityType: Codable {
-  associatedtype EntityRequest: RequestSettings
+protocol EntityType: Mappable {
   associatedtype CellType: CellConfigurable
+  associatedtype RequestType: RequestSettings
+  associatedtype ParameterType: RequestParameter
 }

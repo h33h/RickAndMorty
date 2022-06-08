@@ -52,7 +52,7 @@ class LifeStatusIndicator: UIView {
   }()
   private let currentStatus = PublishSubject<LifeStatus>()
   private let disposeBag = DisposeBag()
-  var isAlive: LifeStatus = .alive {
+  var isAlive: LifeStatus? = .alive {
     didSet {
       switch isAlive {
       case .alive:
@@ -60,6 +60,8 @@ class LifeStatusIndicator: UIView {
       case .dead:
         currentStatus.onNext(.dead)
       case .unknown:
+        currentStatus.onNext(.unknown)
+      case .none:
         currentStatus.onNext(.unknown)
       }
     }

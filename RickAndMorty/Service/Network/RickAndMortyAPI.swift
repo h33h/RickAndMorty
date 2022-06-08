@@ -8,9 +8,9 @@
 import Moya
 
 enum RickAndMortyAPI {
-  case getEntities(settings: RequestSettings)
+  case getEntities(settings: AnyRequestSettings)
 
-  var settings: RequestSettings {
+  var settings: AnyRequestSettings {
     switch self {
     case .getEntities(let settings): return settings
     }
@@ -26,14 +26,11 @@ extension RickAndMortyAPI: TargetType {
 
   var baseURL: URL { URL(string: Constants.apiUrl)! }
 
-  var path: String { settings.path() }
+  var path: String { settings.path }
 
   var method: Method { .get }
 
-  var task: Task {
-    if settings.parameters.isEmpty { return .requestPlain }
-    return .requestParameters(parameters: settings.parameters, encoding: URLEncoding.queryString)
-  }
+  var task: Task { .requestParameters(parameters: settings.parameters, encoding: URLEncoding.default) }
 
   var headers: [String: String]? {
     [Constants.contentTypeHeader: Constants.contentTypeValue]

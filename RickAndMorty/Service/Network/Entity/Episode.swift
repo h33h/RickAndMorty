@@ -5,29 +5,32 @@
 //  Created by XXX on 27.05.22.
 //
 
-import Foundation
+import ObjectMapper
 
-struct Episode: Codable {
-  let id: Int
-  let name: String
-  let airDate: String
-  let episode: String
-  @OptionalCodable var characters: [URL?]?
-  @OptionalCodable var url: URL?
-  let created: Date
+struct Episode: Mappable {
+  var id: Int?
+  var name: String?
+  var airDate: String?
+  var episode: String?
+  var characters: [String?] = []
+  var url: String?
+  var created: Date?
 
-  enum CodingKeys: String, CodingKey {
-    case id
-    case name
-    case airDate = "air_date"
-    case episode
-    case characters
-    case url
-    case created
+  init?(map: Map) { }
+
+  mutating func mapping(map: Map) {
+    id <- map["id"]
+    name <- map["name"]
+    airDate <- map["air_date"]
+    episode <- map["episode"]
+    characters <- map["characters"]
+    url <- map["url"]
+    created <- (map["created"], DateFormatterTransform.rickAndMortyDateFormatter)
   }
 }
 
 extension Episode: EntityType {
-  typealias EntityRequest = EpisodeRequestSettings
+  typealias RequestType = EpisodeRequestSettings
+  typealias ParameterType = EpisodeRequestParameter
   typealias CellType = EpisodeCell
 }

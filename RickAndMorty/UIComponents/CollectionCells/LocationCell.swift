@@ -15,10 +15,9 @@ class LocationCell: FullWidthCollectionViewCell {
 
 extension LocationCell: CellConfigurable {
   typealias Item = Location
-  func configure(with item: Location) -> Self {
+  func configure(with item: Location) {
     locationNameLabel.text = item.name
     locationTypeLabel.text = item.type
     locationDimensionLabel.text = item.dimension
-    return self
   }
 }

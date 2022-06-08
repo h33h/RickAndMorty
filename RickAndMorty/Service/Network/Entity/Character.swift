@@ -5,42 +5,67 @@
 //  Created by XXX on 27.05.22.
 //
 
-import Foundation
+import ObjectMapper
 
-enum LifeStatus: String, Codable {
+enum LifeStatus: String {
   case alive = "Alive"
   case dead = "Dead"
   case unknown
 }
 
-enum GenderStatus: String, Codable {
+enum GenderStatus: String {
   case female = "Female"
   case male = "Male"
   case genderless = "Genderless"
   case unknown
 }
 
-struct Character: Codable {
-  let id: Int
-  let name: String
-  let status: LifeStatus
-  let species: String
-  let type: String
-  let gender: GenderStatus
-  let origin: CharacterLocation
-  let location: CharacterLocation
-  @OptionalCodable var image: URL?
-  @OptionalCodable var episode: [URL?]?
-  @OptionalCodable var url: URL?
-  let created: Date
+struct Character: Mappable {
+  var id: Int?
+  var name: String?
+  var status: LifeStatus?
+  var species: String?
+  var type: String?
+  var gender: GenderStatus?
+  var origin: CharacterLocation?
+  var location: CharacterLocation?
+  var image: String?
+  var episode: [String?] = []
+  var url: String?
+  var created: Date?
+
+  init?(map: Map) { }
+
+  mutating func mapping(map: Map) {
+    id <- map["id"]
+    name <- map["name"]
+    status <- map["status"]
+    species <- map["species"]
+    type <- map["type"]
+    gender <- map["gender"]
+    origin <- map["origin"]
+    location <- map["location"]
+    image <- map["image"]
+    episode <- map["episode"]
+    url <- map["url"]
+    created <- (map["created"], DateFormatterTransform.rickAndMortyDateFormatter)
+  }
 }
 
-struct CharacterLocation: Codable {
-  let name: String
-  @OptionalCodable var url: URL?
+struct CharacterLocation: Mappable {
+  var name: String?
+  var url: URL?
+
+  init?(map: Map) { }
+
+  mutating func mapping(map: Map) {
+    name <- map["name"]
+    url <- map["url"]
+  }
 }
 
 extension Character: EntityType {
-  typealias EntityRequest = CharacterRequestSettings
+  typealias RequestType = CharacterRequestSettings
+  typealias ParameterType = CharacterRequestParameter
   typealias CellType = CharacterCell
 }
