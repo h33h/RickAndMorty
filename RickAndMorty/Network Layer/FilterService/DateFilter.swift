@@ -30,7 +30,7 @@ class DateFilter: EntityProvider {
         case .forward:
           return self.entityProvider.getEntities(of: type, with: settings)
         case .reverse:
-          settings.page = pagesCount - settings.page
+          settings.page = pagesCount - settings.page + 1
           return self.entityProvider.getEntities(of: type, with: settings)
             .map {
               var reversedResponse = $0

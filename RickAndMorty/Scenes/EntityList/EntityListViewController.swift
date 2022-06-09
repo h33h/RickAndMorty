@@ -16,7 +16,7 @@ class EntityListViewController<Entity: EntityType>: ListViewController {
     registerCell()
   }
 
-  let selectedFilter = BehaviorRelay<FilterType<Entity>>(value: .none)
+  let selectedFilter = BehaviorRelay<FilterType<Entity>>(value: .date(.reverse))
 
   private func registerCell() {
     collectionView.register(
@@ -27,25 +27,22 @@ class EntityListViewController<Entity: EntityType>: ListViewController {
 
   override func bindViewModel() {
     super.bindViewModel()
-    let viewWillLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-      .map { [weak self] _ -> (Int, FilterType<Entity>) in
-        guard let self = self else { throw NetworkError.serviceUnloaded }
-        return (0, self.selectedFilter.value)
-      }
-      .emptyDriverIfError()
     let collectionReachedNewPage = collectionView.rx.prefetchItems
       .compactMap { $0.last?.row }
-      .map { $0 / 15 - 1 }
       .distinctUntilChanged({ $0 }, comparer: { $0 >= $1 })
-      .skip(1)
-      .map { [weak self] page -> (Int, FilterType<Entity>) in
+      .compactMap { [weak self] prefetchRow -> Void? in
         guard let self = self else { throw NetworkError.serviceUnloaded }
-        print(page)
-        return (page, self.selectedFilter.value)
+        let itemCount = self.collectionView.numberOfItems(inSection: 0)
+        print(prefetchRow, itemCount)
+        if itemCount - prefetchRow <= 5 {
+          return ()
+        }
+        return nil
       }
       .emptyDriverIfError()
-    let filterChanged = self.selectedFilter.map { (0, $0) }.emptyDriverIfError()
-    let input = EntityListViewModel<Entity>.Input(fetchEntities: Driver.merge([viewWillLoad, collectionReachedNewPage, filterChanged]))
+
+    let filterChanged = self.selectedFilter.asDriver()
+    let input = EntityListViewModel<Entity>.Input(fetchEntitiesTrigger: collectionReachedNewPage,filterChangedTrigger: filterChanged)
     let output = viewModel.transform(input: input)
     output.entities.drive(collectionView.rx.items) { collectionView, row, item in
       let indexPath = IndexPath(row: row, section: .zero)

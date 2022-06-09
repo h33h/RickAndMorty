@@ -17,6 +17,7 @@ extension RequestSettings {
   var parameters: [String: Any] {
     var parameters: [String: Any] = [:]
     self.parameters.forEach { $0.parameter.forEach { key, value in parameters[key] = value } }
+    parameters["page"] = page
     return parameters
   }
 
