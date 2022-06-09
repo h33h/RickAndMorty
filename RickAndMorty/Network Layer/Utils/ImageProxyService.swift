@@ -26,6 +26,7 @@ class ImageProxyService: ImageProvider {
       {
         single(.success(cachedImage))
       }
+
       self.imageService.getImage(with: url)
         .subscribe(
           onSuccess: { image in
@@ -37,6 +38,7 @@ class ImageProxyService: ImageProvider {
           onFailure: { single(.failure($0)) }
         )
         .disposed(by: self.disposeBag)
+
       return Disposables.create()
     }
   }

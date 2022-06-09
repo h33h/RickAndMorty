@@ -20,8 +20,6 @@ enum RickAndMortyAPI {
 extension RickAndMortyAPI: TargetType {
   private enum Constants {
     static var apiUrl = "https://rickandmortyapi.com/api"
-    static var contentTypeHeader = "Content-type"
-    static var contentTypeValue = "application/json"
   }
 
   var baseURL: URL { URL(string: Constants.apiUrl)! }
@@ -32,7 +30,5 @@ extension RickAndMortyAPI: TargetType {
 
   var task: Task { .requestParameters(parameters: settings.parameters, encoding: URLEncoding.default) }
 
-  var headers: [String: String]? {
-    [Constants.contentTypeHeader: Constants.contentTypeValue]
-  }
+  var headers: [String: String]? { nil }
 }

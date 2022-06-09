@@ -30,7 +30,7 @@ struct Location: Mappable {
 }
 
 extension Location: EntityType {
-  typealias RequestType = LocationRequestSettings
+  typealias EndPointType = LocationEndPoint
   typealias ParameterType = LocationRequestParameter
   typealias CellType = LocationCell
 }

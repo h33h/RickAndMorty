@@ -30,7 +30,7 @@ struct Episode: Mappable {
 }
 
 extension Episode: EntityType {
-  typealias RequestType = EpisodeRequestSettings
+  typealias EndPointType = EpisodeEndPoint
   typealias ParameterType = EpisodeRequestParameter
   typealias CellType = EpisodeCell
 }

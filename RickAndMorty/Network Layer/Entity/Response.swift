@@ -7,9 +7,9 @@
 
 import ObjectMapper
 
-struct Response<T: EntityType & Mappable>: Mappable {
+struct Response<Entity: EntityType & Mappable>: Mappable {
   var info: ResponseInfo?
-  var results: [T] = []
+  var results: [Entity] = []
 
   init?(map: Map) { }
 

@@ -65,7 +65,7 @@ struct CharacterLocation: Mappable {
 }
 
 extension Character: EntityType {
-  typealias RequestType = CharacterRequestSettings
+  typealias EndPointType = CharacterEndPoint
   typealias ParameterType = CharacterRequestParameter
   typealias CellType = CharacterCell
 }

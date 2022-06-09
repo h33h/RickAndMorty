@@ -9,6 +9,6 @@ import ObjectMapper
 
 protocol EntityType: Mappable {
   associatedtype CellType: CellConfigurable
-  associatedtype RequestType: RequestSettings
   associatedtype ParameterType: RequestParameter
+  associatedtype EndPointType: EndPoint
 }

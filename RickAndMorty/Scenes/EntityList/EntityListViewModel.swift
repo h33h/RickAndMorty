@@ -32,11 +32,7 @@ class EntityListViewModel<Entity: EntityType>: ViewModel {
       .flatMapLatest { [weak self] page, filter -> Single<[Entity]> in
         guard let self = self else { throw NetworkError.serviceUnloaded }
         self.isLoading.accept(true)
-        if filter != self.filterService.filterType {
-          self.results.accept([])
-          self.filterService.updateFilter(with: filter)
-        }
-        return self.filterService.getEntities(of: Entity.self, on: page)
+        return self.filterService.getEntities(of: Entity.self, with: EntityRequestSettings<Entity>(page: page))
           .map {
             self.isLoading.accept(false)
             return $0.results

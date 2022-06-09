@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum FilterType<Entity: EntityType>: Equatable {
+enum FilterType<Entity: EntityType> {
   case none
   case date(SortOrder)
-  case parameter(Entity.ParameterType)
+  case parameter([Entity.ParameterType])
 }
